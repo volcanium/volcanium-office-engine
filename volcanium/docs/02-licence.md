@@ -1,5 +1,9 @@
 # Licence et conformité (non juridique : relecture par un avocat open source recommandée)
 
+## Deux dépôts (décision 2026-11-08)
+- **`volcanium-office-engine`** (github.com/volcanium/volcanium-office-engine) = le **MOTEUR** (interface des éditeurs texte/tableur/présentation, version modifiée d'ONLYOFFICE web-apps) : **doit rester libre, AGPL v3, même licence que l'original**. C'est l'adresse à mettre dans `SOURCE_URL` (build) et `VITE_SOURCE_URL`. Dépôt PRIVÉ pour l'instant : le **passer en public avant toute mise en ligne** (AGPL §13) après validation de la question `@volcanium/volcanium-components` ci-dessous. `upstream/web-apps` est son clone de travail (remote `origin` = ce dépôt, remote `onlyoffice` = amont).
+- **`volcanium-office`** (ce dépôt) = la **page d'accueil et l'API** (liste des fichiers, partage, Drive, comptes) : ne contient aucun code du moteur (`upstream/` ignoré). Les fichiers qui construisent le moteur (scripts, Dockerfile, coque `editor-ui`) restent ICI (source de vérité) et sont copiés dans le moteur par `scripts/sync-engine-tools.sh` (à relancer après toute modification, puis commiter le dépôt du moteur).
+
 - Code Office : AGPL v3 (`license` dans package.json). Lien « Code source » : page À propos, variable `VITE_SOURCE_URL` **à renseigner avant toute mise en ligne** (AGPL §13).
 - Mentions d'origine (ONLYOFFICE / Ascensio System SIA, version modifiée, licence) : `pages/AboutPage.tsx`.
 - Marques : aucun logo ni nom ONLYOFFICE dans l'UI hors mention d'origine. Voir https://www.onlyoffice.com/trademark-policy
