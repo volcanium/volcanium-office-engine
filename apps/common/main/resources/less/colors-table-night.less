@@ -1,0 +1,341 @@
+@import "color-tokens.less";
+
+:root {
+    .theme-night {
+        //--toolbar-header-document: @neutral-900;
+        --toolbar-header-document: @neutral-900;
+        --toolbar-header-spreadsheet: @neutral-900;
+        --toolbar-header-presentation: @neutral-900;
+        --toolbar-header-pdf: @neutral-900;
+        --toolbar-header-visio: @neutral-900;
+
+        --text-toolbar-header-on-background-document: @neutral-900;
+        --text-toolbar-header-on-background-spreadsheet: @neutral-900;
+        --text-toolbar-header-on-background-presentation: @neutral-900;
+        --text-toolbar-header-on-background-pdf: @neutral-900;
+        --text-toolbar-header-on-background-visio: @neutral-900;
+
+        --background-normal: @neutral-700;
+        --background-toolbar: @neutral-700;
+        --background-toolbar-tab: @neutral-700;
+        --background-statusbar: @neutral-700;
+        --background-toolbar-additional: @neutral-700;
+        --background-primary-dialog-button: @blue-400;
+        --background-accent-button: @blue-400;
+        --background-notification-popover: @blue-900;
+        --background-notification-badge: @yellow-200;
+        --background-scrim: @alpha-700;
+        --background-loader: @alpha-900;
+        --background-alt-key-hint: @yellow-200;
+        --background-contrast-popover: @neutral-700;
+        --shadow-contrast-popover: @alpha-600;
+        --background-fill-button: @yellow-200;
+        --background-pane: @neutral-900;
+        --background-pane-additional: @neutral-900;
+
+        --highlight-button-hover: @neutral-600;
+        --highlight-button-pressed: @neutral-550;
+        --highlight-button-pressed-hover: @neutral-500;
+        --highlight-primary-dialog-button-hover: @blue-500;
+        --highlight-primary-dialog-button-pressed: @blue-600;
+        --highlight-header-button-hover: @alpha-100;
+        --highlight-header-button-pressed: @alpha-200;
+        --highlight-text-select: @blue-500;
+        --highlight-fill-button-hover: @yellow-100;
+        --highlight-fill-button-pressed: @yellow-300;
+        --highlight-comment-hover: @alpha-100;
+        --highlight-comment-pressed: @alpha-200;
+
+        --border-toolbar: @neutral-600;
+        --border-toolbar-active-panel-top: @neutral-900;
+        --border-toolbar-active-tab: var(--background-toolbar-tab);
+        --border-divider: @neutral-600;
+        --border-regular-control: @neutral-550;
+        --border-preview-hover: @blue-300;
+        --border-preview-select: @blue-400;
+        --border-control-focus: @blue-400;
+        --border-color-shading: @alpha-600;
+        --border-contrast-popover: @neutral-550;
+        --border-button-pressed-focus: @blue-500;
+
+        --text-normal: @neutral-50;
+        --text-normal-pressed: @neutral-50;
+        --text-secondary: @neutral-200;
+        --text-tertiary: @neutral-300;
+        --text-link: @blue-200;
+        --text-link-hover: @blue-300;
+        --text-link-active: @blue-300;
+        --text-link-visited: @blue-200;
+        --text-inverse: @neutral-white;
+        --text-toolbar-header: @neutral-50;
+        --text-contrast-background: @neutral-white;
+        --text-alt-key-hint: @neutral-800;
+
+        --icon-normal: @neutral-100;
+        --icon-normal-pressed: @neutral-100;
+        --icon-toolbar-header: @neutral-100;
+        --icon-gray-primary: @neutral-100;
+        --icon-gray-secondary: @neutral-300;
+        --icon-blue-primary: @blue-300;
+        --icon-blue-secondary: @blue-200;
+        --icon-red: @red-300;
+        --icon-success: @green-400;
+
+        --highlight-header-tab-underline-document: @neutral-150;
+        --highlight-header-tab-underline-spreadsheet: @neutral-150;
+        --highlight-header-tab-underline-presentation: @neutral-150;
+        --highlight-header-tab-underline-pdf: @neutral-150;
+        --highlight-header-tab-underline-visio: @neutral-150;
+
+        --highlight-toolbar-tab-underline-document: @neutral-150;
+        --highlight-toolbar-tab-underline-spreadsheet: @neutral-150;
+        --highlight-toolbar-tab-underline-presentation: @neutral-150;
+        --highlight-toolbar-tab-underline-pdf: @neutral-150;
+        --highlight-toolbar-tab-underline-visio: @neutral-150;
+
+        // Canvas
+
+        --canvas-background: @neutral-900;
+        --canvas-content-background: @neutral-white;
+        --canvas-page-border: @neutral-200;
+
+        --canvas-ruler-background: @neutral-900;
+        --canvas-ruler-border: @neutral-550;
+        --canvas-ruler-margins-background: @neutral-600;
+        --canvas-ruler-mark: @neutral-400;
+        --canvas-ruler-handle-border: @neutral-400;
+        --canvas-ruler-handle-border-disabled: @neutral-600;
+
+        --canvas-high-contrast: @neutral-100;
+        --canvas-high-contrast-disabled: @neutral-550;
+
+        --canvas-cell-title-text: @neutral-300;
+        --canvas-cell-title-background: @neutral-900;
+        --canvas-cell-title-background-hover: @neutral-700;
+        --canvas-cell-title-background-selected: @neutral-600;
+        --canvas-cell-title-border: @neutral-550;
+        --canvas-cell-title-border-hover: @neutral-400;
+        --canvas-cell-title-border-selected: @neutral-200;
+
+        --canvas-dark-cell-title: @neutral-550;
+        --canvas-dark-cell-title-hover: @neutral-400;
+        --canvas-dark-cell-title-selected: @neutral-800;
+        --canvas-dark-cell-title-border: @neutral-700;
+        --canvas-dark-cell-title-border-hover: @neutral-600;
+        --canvas-dark-cell-title-border-selected: @neutral-900;
+
+        --canvas-scroll-thumb: @neutral-900;
+        --canvas-scroll-thumb-hover: @neutral-600;
+        --canvas-scroll-thumb-pressed: @neutral-550;
+        --canvas-scroll-thumb-border: @neutral-550;
+        --canvas-scroll-thumb-border-hover: @neutral-500;
+        --canvas-scroll-thumb-border-pressed: @neutral-400;
+        --canvas-scroll-arrow: @neutral-400;
+        --canvas-scroll-arrow-hover: @neutral-300;
+        --canvas-scroll-arrow-pressed: @neutral-200;
+        --canvas-scroll-thumb-target: @neutral-400;
+        --canvas-scroll-thumb-target-hover: @neutral-300;
+        --canvas-scroll-thumb-target-pressed: @neutral-200;
+
+        --canvas-sheet-view-cell-background: @green-800;
+        --canvas-sheet-view-cell-background-hover: @green-700;
+        --canvas-sheet-view-cell-background-pressed: @green-600;
+        --canvas-sheet-view-cell-title-label: @neutral-white;
+        --canvas-sheet-view-select-all-icon: @neutral-50;
+
+        --canvas-select-all-icon: @neutral-400;
+
+        // Others
+
+        --button-small-normal-icon-offset-x: -24px;
+        --button-small-active-icon-offset-x: -24px;
+        //--button-large-normal-icon-offset-x: 0;
+        //--button-large-active-icon-offset-x: -31px;
+        //--button-huge-normal-icon-offset-x: 0;
+        //--button-huge-active-icon-offset-x: -40px;
+        //--button-xhuge-normal-icon-offset-x: 0;
+        //--button-xhuge-active-icon-offset-x: -28px;
+        --button-header-normal-icon-offset-x: -24px;
+        --button-header-active-icon-offset-x: -24px;
+
+        --modal-window-mask-opacity: 0.2;
+        --image-border-types-filter: invert(100%) brightness(4);
+        --image-border-types-filter-selected: invert(100%) brightness(4);
+        --component-normal-icon-filter: invert(100%);
+
+        --component-normal-icon-opacity: 1;
+        --component-hover-icon-opacity: 1;
+        --component-active-icon-opacity: 1;
+        --component-active-hover-icon-opacity: 1;
+        --component-disabled-opacity: .4;
+
+        --header-component-normal-icon-opacity: 1;
+        --header-component-hover-icon-opacity: 1;
+        --header-component-active-icon-opacity: 1;
+        --header-component-active-hover-icon-opacity: 1;
+
+        //--menu-icon-item-checked-offset-x: -20px;
+        --border-sidemenu: 0 none;
+        --border-radius-toolbar: 8px;
+        --toolbar-tab-radius: 5px;
+        --toolbar-tab-line-radius: 2px;
+        --toolbar-tab-line-height: 3px;
+        --toolbar-tab-line-bottom: 4px;
+        --toolbar-tab-text-margin: 7px;
+        --border-toolbar-z-clear: transparent;
+        --shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+        --shadow-toolbar-style-off: 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+        --shadow-side-panel: 0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --layout-padding-toolbar: 0 10px;
+        --layout-padding-left-panel: 0px 3px 8px 40px;
+        --layout-padding-left-panel-rtl: 0px 40px 8px 3px;
+        --layout-padding-right-panel: 0px 44px 8px 3px;
+        --layout-padding-right-panel-rtl: 0px 3px 8px 44px;
+        --layout-padding-right-panel-content: 5px 12px 0 12px;
+        --layout-padding-right-panel-content-rtl: 5px 12px 0 12px;
+        --layout-padding-x-side-panel: 6px;
+        --layout-padding-y-side-panel: 4px;
+
+        --celleditor-height: 24px;
+        --celleditor-line-height: 20px;
+        --celleditor-border-width: 0px;
+        --celleditor-input-border: var(--scaled-one-pixel, 1px) solid var(--border-fill-input);
+        --celleditor-input-border-radius: var(--border-radius-form-control);
+        --celleditor-cell-name-height: calc(var(--celleditor-height) + (1px - 1px/var(--pixel-ratio-factor,1)));
+        --celleditor-cell-name-border-right: var(--scaled-one-pixel, 1px) solid var(--border-fill-input);
+        --celleditor-func-label-margin-left: 1px;
+        --celleditor-func-label-margin-right: 4px;
+        --celleditor-func-label-border-radius: 4px;
+
+        --x-small-btn-size: 24px;
+        --x-small-btn-icon-size: 24px;
+        --toolbar-small-btn-margin-top: 12px;
+        --x-huge-btn-height: calc(var(--x-small-btn-size) * 2 + var(--toolbar-small-btn-margin-top));
+        --x-huge-btn-icon-size: 28px;
+        --toolbar-height-controls: 84px;
+        --statusbar-height: 32px;
+        --toolbar-group-height: var(--x-huge-btn-height);
+        --form-control-size: var(--x-small-btn-size);
+        --x-category-btn-size: var(--x-small-btn-size);
+        --category-btn-y-margin-small: 2px;
+        --category-btn-y-margin-large: 10px;
+        --large-btn-dataview-y-margin: 0;
+
+        --border-radius-form-control: 4px;
+        --border-radius-checkbox: 4px;
+        --border-radius-button-base: 4px;
+        --border-radius-button-toolbar: var(--border-radius-button-base);
+        --border-radius-button-normal: var(--border-radius-button-base);
+        --border-radius-button-category: var(--border-radius-button-base);
+        --border-radius-window: 8px;
+        --border-radius-dropdown-menu: 8px;
+        --border-radius-dataview-item: 2px;
+
+        --line-height-base: 1.5;
+        --input-height-base: 24px;
+
+        --font-family-base: "Segoe UI";
+        --font-size-base: 12px;
+
+        --background-fill-input: var(--background-normal);
+        --background-fill-input-disabled: var(--background-normal);
+        --background-fill-input-readonly: var(--background-normal);
+
+        --highlight-category-button-hover: @alpha-100;
+        --highlight-category-button-pressed: @alpha-200;
+        --highlight-header-input-hover: var(--highlight-header-button-hover);
+        --highlight-header-input-pressed: var(--background-fill-input);
+
+        --border-fill-input: var(--border-regular-control);
+        //--border-fill-input-focused: var(--border-control-focus);
+        --border-fill-input-focused: @blue-500;
+        --border-fill-input-disabled: var(--border-regular-control);
+        --border-fill-input-readonly: var(--border-regular-control);
+
+        --text-fill-input: var(--text-normal);
+        --text-fill-input-disabled: var(--text-normal);
+        --text-fill-input-readonly: var(--text-normal);
+
+        --shadow-fill-input: 0 0 0 1px var(--border-fill-input-focused);
+        --shadow-control-focus: inset 0 0 0 1px var(--border-control-focus), 0 0 0 1px var(--border-control-focus);
+        --shadow-control-pressed-focus: var(--shadow-control-focus);
+        --shadow-control-primary-pressed-focus: inset 0 0 0 1px var(--background-normal), 0 0 0 1px var(--border-button-pressed-focus);
+
+        // dropdown button
+        --dd-button-size: 16px;
+        --dd-button-x-padding: 6px;
+
+        // checkbox
+        --chb-size: 14px;
+        --chb-v-margin: 2px;
+        --chb-border-radius: 4px;
+        --chb-check-mark-background: var(--icon-gray-primary);
+        --chb-background-normal: var(--background-normal);
+        --chb-background-normal-hover: @neutral-300;
+        --chb-border-normal: @neutral-400;
+        --chb-border-normal-hover: @neutral-300;
+        --chb-border-normal-focus: @blue-500;
+        --chb-background-checked: var(--background-normal);
+        --chb-background-checked-hover: @neutral-600;
+        --chb-border-checked: @neutral-400;
+        --chb-border-checked-hover: @neutral-300;
+        --chb-border-checked-focus: @blue-500;
+
+        // radio
+        --rb-size: 14px;
+        --rb-check-mark-size: 3px;
+        --rb-check-mark-background: var(--icon-gray-primary);
+        --rb-background-normal: var(--background-normal);
+        --rb-background-normal-hover: @neutral-600;
+        --rb-border-normal: @neutral-400;
+        --rb-border-normal-hover: @neutral-300;
+        --rb-border-normal-focus: @blue-500;
+        --rb-background-checked: var(--background-normal);
+        --rb-background-checked-hover: @neutral-600;
+        --rb-border-checked: @neutral-400;
+        --rb-border-checked-hover: @neutral-300;
+        --rb-border-checked-focus: @blue-500;
+
+        // slider
+        --slider-track-height: 4px;
+        --slider-border-radius: 2px;
+        --slider-track-background-normal: @neutral-550;
+        --slider-track-background-filled: @blue-500;
+        --slider-thumb-size: 18px;
+        --slider-thumb-border-size: 3px;
+        --slider-thumb-border-radius: 50%;
+        --slider-thumb-background-normal: @blue-400;
+        --slider-thumb-border-normal: @neutral-white;
+        --slider-thumb-background-hover: @blue-500;
+        --slider-thumb-background-active: @blue-600;
+        --slider-thumb-shadow: 0 1px 2px 0 #0000000F, 0 1px 3px 0 #0000001A;
+
+        --sprite-button-small-width: 48px;
+        --sprite-button-big-width: 56px;
+        --sprite-button-huge-width: 80px;
+        --sprite-button-icons-base-url: ~"@{app-image-const-path}/v2";
+        --sprite-button-icons-uid: mod25;
+
+        --header-input-height:  var(--input-height-base);
+        --header-input-line-height:  var(--line-height-base);
+        --border-header-input-focused: var(--border-fill-input-focused);
+
+        --header-component-height:  var(--x-small-btn-size);
+        --header-component-width:  var(--x-small-btn-size);
+        --header-component-line-height: var(--x-small-btn-size);
+        --header-component-padding-x: ~"0px";
+        --header-component-padding-y: ~"0px";
+        --header-component-margin: 0 6px;
+        --header-component-align: center;
+
+        --toolbar-simple-border-bottom: 0 none;
+        --toolbar-simple-shadow: var(--shadow-toolbar, none);
+        --toolbar-simple-content-padding-top: 3px;
+        --layout-padding-hor-toolbar-simple: 5px;
+        --simple-editor-layout-collapse-button-rigth: 8px;
+        --toolbar-preferred-tab-style: line;
+        --border-editor-sdk: none;
+
+        --content-padding-top: 8px;
+    }
+}

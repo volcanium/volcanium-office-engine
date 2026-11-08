@@ -1,0 +1,44 @@
+<div id="id-adv-image-snap" class="settings-panel active">
+    <div class="inner-content">
+        <table cols="1" role="presentation">
+            <tr>
+                <td class="padding-small" role="radiogroup" aria-owns="image-advanced-radio-onecell image-advanced-radio-absolute">
+                    <div id="image-advanced-radio-twocell"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="padding-small">
+                    <div id="image-advanced-radio-onecell"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="padding-small">
+                    <div id="image-advanced-radio-absolute"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="id-adv-image-alttext" class="settings-panel active">
+    <div class="inner-content">
+        <table cols="1" width="100%" role="presentation">
+            <tr>
+                <td class="padding-large">
+                    <label class="header"><%= scope.textAltTitle %></label>
+                    <div id="image-advanced-alt-title"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="header"><%= scope.textAltDescription %></label>
+                    <textarea id="image-advanced-alt-description" class="form-control" style="width: 100%; height: 70px;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label><%= scope.textAltTip %></label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
