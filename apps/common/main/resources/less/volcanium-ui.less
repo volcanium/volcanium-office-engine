@@ -1,0 +1,242 @@
+// Volcanium Office : habillage de l'interface d'après @volcanium/volcanium-components (recettes lues dans les sources de la librairie).
+// Fichier AJOUTÉ le 2026-11-06 par Volcanium (projet basé sur ONLYOFFICE, Ascensio System SIA, AGPL v3). Importé en dernier par chaque éditeur.
+//
+// Recettes reprises (src/components/ui) :
+//   Button      : « primary » = voile + liseré fin + texte normal (neutre) ; « accent » = orange de marque (un seul CTA) ; rayon 7 ; px-6 py-2 ; anneau de focus orange/50
+//   Input       : px-3.5 py-2, liseré line-strong, focus = bordure orange/60, placeholder secondaire/40
+//   Checkbox    : 16 px, rayon 3, coché = orange ; Toggle : pilule 44x24
+//   Tabs        : soulignement 2 px (actif = couleur + font-medium, survol = line-strong) ; SegmentedControl : rayon 5, actif = voile + bordure texte/40
+//   Modal       : rayon 12, p-7, titre 24 px semi-gras, croix ronde, trait, boutons à droite (secondaire puis primaire)
+//   Popover     : rayon 9, line-strong, p-1.5, lignes rounded-lg px-3 py-1.5 survol voile ; Tooltip : liseré line-strong, rayon 5
+// Jetons : --vc-* (définis par theme-night / theme-white, générés depuis index.css de la librairie). Orange de marque = interactif ;
+// la couleur de l'éditeur (--vo-edit : bleu / vert / rouge) ne sert qu'au petit trait de l'onglet actif.
+
+:root {
+    --vo-r-sm: 5px;
+    --vo-r: 7px;
+    --vo-r-lg: 9px;
+    --vo-r-xl: 12px;
+}
+
+// ── En-tête ─────────────────────────────────────────────────────────────────────────────────────────
+#app-title #box-document-title {
+    box-shadow: none !important;
+    .btn-header { border-radius: var(--vo-r) !important; }
+    #title-doc-name, #rib-doc-name {
+        border-radius: var(--vo-r) !important;
+        text-align: center;
+        font-weight: 500;
+        border: 1px solid transparent !important;
+        background: transparent !important;
+        &:hover:not(:disabled) { border-color: var(--vc-line-strong) !important; }
+        &:focus { border-color: color-mix(in srgb, var(--vc-main) 60%, transparent) !important; }
+    }
+}
+
+// ── Onglets du ruban : composant Tabs (soulignement 2 px) ───────────────────────────────────────────
+.toolbar {
+    .box-tabs { border-bottom: 1px solid var(--vc-line); }
+    .box-tabs .extra, .tabs { box-shadow: none !important; }
+    .tabs {
+        > ul { padding: 0 !important; }
+        li {
+            height: 100% !important;
+            align-items: stretch !important;
+            margin: 0 2px 0 0;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            &:after { display: none !important; }
+            > a {
+                display: flex !important;
+                align-items: center;
+                height: 100%;
+                margin: 0 !important;
+                padding: 0 16px !important;
+                border-bottom: 2px solid transparent;
+                font-size: 14px !important;
+                font-weight: 400;
+                color: color-mix(in srgb, var(--vc-text) 60%, transparent) !important;
+            }
+            &:hover:not(.active) > a { color: var(--vc-text) !important; border-bottom-color: var(--vc-line-strong); }
+            &.active > a { color: var(--vc-text) !important; font-weight: 500; border-bottom-color: var(--vo-edit); }
+            &.x-lone > a { color: var(--vc-text) !important; }
+        }
+        .scroll.left, .scroll.right { box-shadow: none !important; }
+    }
+    // Ruban : carte (Card) — liseré fin, pas d'ombre
+    .box-controls {
+        border: 1px solid var(--vc-line) !important;
+        border-radius: var(--vo-r-lg) !important;
+        box-shadow: none !important;
+    }
+}
+
+// ── Boutons d'outils : IconButton (32 px, rayon 7, survol voile ; actif = orange/20) ────────────────
+.btn-toolbar, .btn-category, .btn-options, .btn-header, .btn-edit { border-radius: var(--vo-r) !important; }
+.btn-toolbar:hover:not(.disabled):not(.active) { background: var(--vc-veil-strong) !important; }
+.btn-toolbar.active:not(.disabled), .btn-toolbar:active:not(.disabled), .btn-toolbar.active:hover:not(.disabled) {
+    background: color-mix(in srgb, var(--vc-main) 20%, transparent) !important;
+    border-color: transparent !important;
+    svg.icon { fill: var(--vc-main) !important; }
+}
+
+// ── Champs : Input (liseré line-strong, focus orange/60, placeholder secondaire/40) ────────────────
+.form-control, .combobox .form-control, .input-field input, .input-field textarea, textarea.form-control {
+    border: 1px solid var(--vc-line-strong) !important;
+    border-radius: var(--vo-r) !important;
+    background: transparent !important;
+    color: var(--vc-text) !important;
+    box-shadow: none !important;
+    transition: border-color .2s;
+    &::placeholder { color: color-mix(in srgb, var(--vc-secondary) 40%, transparent); }
+    &:focus, .input-group.focused > & { border-color: color-mix(in srgb, var(--vc-main) 60%, transparent) !important; box-shadow: none !important; }
+}
+.combobox, .input-group { border-radius: var(--vo-r) !important; }
+// Cases à cocher / boutons radio : Checkbox
+.custom-checkbox-input, input[type=checkbox], .checkbox-indeterminate { accent-color: var(--vc-main); }
+
+// ── Boutons de fenêtre : Button « primary » (neutre) ───────────────────────────────────────────────
+.btn.normal, .btn.dlg-btn {
+    border-radius: var(--vo-r) !important;
+    font-weight: 500;
+    background: var(--vc-veil-strong) !important;
+    border: 1px solid var(--vc-line-strong) !important;
+    color: var(--vc-text) !important;
+    box-shadow: none !important;
+    &:hover:not(.disabled) { background: var(--vc-line-strong) !important; }
+    &.disabled, &:disabled { opacity: .5; }
+    &:focus-visible { outline: none; box-shadow: 0 0 0 2px color-mix(in srgb, var(--vc-main) 50%, transparent) !important; }
+    // « Annuler » : variante secondaire (sans fond)
+    &.dlg-btn:not(.primary):not(.accent) { background: transparent !important; color: var(--vc-secondary) !important; &:hover:not(.disabled) { background: var(--vc-veil) !important; } }
+    // appel à l'action unique : orange de marque
+    &.accent { background: var(--vc-main) !important; border-color: var(--vc-main) !important; color: var(--vc-on-main) !important; &:hover:not(.disabled) { filter: brightness(1.1); } }
+}
+
+// ── Choix segmenté : SegmentedControl ──────────────────────────────────────────────────────────────
+.asc-window .grouped-buttons { display: flex; gap: 4px; margin-bottom: 14px; }
+.asc-window .grouped-buttons > .btn, .asc-window .btn-group:not(.dropdown) > .btn {
+    border-radius: var(--vo-r-sm) !important;
+    margin: 0 !important;
+    height: 28px;
+    padding: 0 10px;
+    font-size: 12px;
+    border-radius: var(--vo-r-sm) !important;
+    background: transparent !important;
+    border: 1px solid var(--vc-line-strong) !important;
+    opacity: .7;
+    &.active, &:active { opacity: 1; background: var(--vc-veil-strong) !important; border-color: color-mix(in srgb, var(--vc-text) 40%, transparent) !important; }
+    &:hover { opacity: 1; }
+}
+
+// ── Menus déroulants : Popover (rayon 9, line-strong, p-1.5, lignes rounded-lg survol voile) ───────
+.dropdown-menu, .dropdown-submenu > .dropdown-menu {
+    border-radius: var(--vo-r-lg) !important;
+    border: 1px solid var(--vc-line-strong) !important;
+    background: var(--vc-container) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.30), 0 8px 10px -6px rgba(0, 0, 0, 0.30) !important;
+    padding: 6px !important;
+    min-width: 200px;
+    overflow: visible;
+    > li { margin: 1px 0; }
+    li > a, li > a.menu-item {
+        // le décalage horizontal d'amont (20 px) loge les icônes et coches : on règle seulement hauteur, angles et couleurs
+        padding-top: 7px !important;
+        padding-bottom: 7px !important;
+        line-height: 18px !important;
+        font-size: 14px !important;
+        border-radius: var(--vo-r) !important;
+        color: var(--vc-text) !important;
+    }
+    li > a:hover, li > a:focus, li.over > a, li > a.focus { background: var(--vc-veil-strong) !important; }
+    li > a.checked:not(.no-checkmark), li.selected > a { color: var(--vc-main) !important; }
+    li > a.no-checkmark.checked .menu-item-icon { border-radius: var(--vo-r-sm); box-shadow: 0 0 0 2px var(--vc-main) !important; }
+    .divider, li.devider { margin: 6px 8px !important; background: var(--vc-line) !important; }
+    > li.disabled > a { opacity: .45; }
+}
+.listview .item, .dataview .item, .combo-dataview .item, .menu-picker .item, .dropdown-menu .item {
+    border-radius: var(--vo-r) !important;
+    &.selected, &.active { background: color-mix(in srgb, var(--vc-main) 15%, transparent) !important; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--vc-main) 60%, transparent) !important; }
+}
+
+// ── Info-bulles : Tooltip ──────────────────────────────────────────────────────────────────────────
+.tooltip-inner, .popover, .asc-synchronizetip, .asc-loadmask-body {
+    background: var(--vc-container) !important;
+    color: var(--vc-text) !important;
+    border: 1px solid var(--vc-line-strong) !important;
+    border-radius: var(--vo-r-sm) !important;
+    font-size: 14px;
+}
+
+// ── Fenêtres : Modal (rayon 12, p-7, titre 24 px semi-gras, croix ronde, trait, boutons à droite) ──
+.modals-mask, .asc-window.modal + .modals-mask {
+    background: color-mix(in srgb, var(--vc-back) 70%, transparent) !important;
+    backdrop-filter: blur(4px);
+}
+.asc-window {
+    border-radius: var(--vo-r-xl) !important;
+    border: 1px solid var(--vc-line) !important;
+    background: var(--vc-container) !important;
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.55) !important;
+    overflow: hidden;
+    > .header {
+        height: 76px !important;
+        display: flex !important;
+        align-items: center;
+        padding: 0 !important;
+        background: transparent !important;
+        border-bottom: 1px solid var(--vc-line) !important;
+        border-radius: 0 !important;
+        > .title {
+            flex: 1;
+            padding: 0 76px 0 28px !important;
+            text-align: left !important;
+            font-size: 24px !important;
+            font-weight: 600 !important;
+            line-height: 76px !important;
+            color: var(--vc-secondary);
+        }
+        .tools {
+            top: 22px !important;
+            right: 22px !important;
+            .tool {
+                width: 32px !important; height: 32px !important;
+                border-radius: 50% !important;
+                border: 1px solid transparent;
+                opacity: .7;
+                &:hover { opacity: 1; background: var(--vc-veil) !important; border-color: var(--vc-line); }
+            }
+        }
+    }
+    > .body { top: 76px !important; border-radius: 0 !important; background: transparent !important; }
+    .footer, .modal-dlg .footer {
+        display: flex !important;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        gap: 12px;
+        height: auto !important;
+        min-height: 44px;
+        padding: 18px 28px 28px !important;
+        text-align: right !important;
+        button, .btn { margin: 0 !important; min-width: 96px; height: 36px; padding: 0 24px; font-size: 14px; }
+    }
+    &.modal-dlg > .body > .box, .modal-dlg .body .box, .body > .box { padding-left: 28px !important; padding-right: 28px !important; }
+    label { color: color-mix(in srgb, var(--vc-text) 85%, transparent); }
+}
+
+// ── Menu « Fichier » : colonne façon Sidebar (actif = orange/20 + texte orange) ─────────────────────
+#file-menu-panel .panel-menu {
+    padding: 10px 8px;
+    li.fm-btn { margin: 2px 0; border-radius: var(--vo-r) !important; }
+    li.fm-btn > a { border-radius: var(--vo-r) !important; padding-top: 8px; padding-bottom: 8px; }
+    li.fm-btn:hover:not(.disabled):not(.active) { background: var(--vc-veil-strong) !important; }
+    li.fm-btn.active { background: color-mix(in srgb, var(--vc-main) 20%, transparent) !important; > a { color: var(--vc-main) !important; } }
+    li.devider { margin: 8px 10px !important; background: var(--vc-line) !important; }
+}
+
+// ── Barres latérales et barre d'état ───────────────────────────────────────────────────────────────
+.tool-menu-left .btn-category, .tool-menu-right .btn-category, .tool-menu .btn-category {
+    border-radius: var(--vo-r) !important;
+    &.active:not(.disabled) { background: color-mix(in srgb, var(--vc-main) 20%, transparent) !important; svg.icon { fill: var(--vc-main) !important; } }
+}
+.statusbar { box-shadow: none !important; border-top: 1px solid var(--vc-line); }

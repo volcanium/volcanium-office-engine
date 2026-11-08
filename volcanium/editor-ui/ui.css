@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@source "../node_modules/@volcanium/volcanium-components/dist";
+@source ".";
+@import "@volcanium/volcanium-components/index.css";
+
+/* La page de l'éditeur d'amont fixe sa propre taille de base : Tailwind compte en rem, donc tout rétrécirait.
+   Dans cette feuille isolée, espacements et tailles de texte sont donc en pixels. */
+@theme {
+  --spacing: 4px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+}
+
+/* Coque plein écran posée AU-DESSUS de l'éditeur d'amont : transparente et traversante au centre (là où vit le canevas du document). */
+.vo-root { pointer-events: none; }
+.vo-root * { pointer-events: auto; }
+.vo-root .vo-row, .vo-root .vo-hole, .vo-root .vo-hole * { pointer-events: none; }
+:host, .vo-app { font-family: "DM Sans", system-ui, sans-serif; }
+
+/* Le calque de dessin ne reçoit les clics que lorsque le stylo est actif (sinon le trou central laisse tout passer au moteur). */
+.vo-root .vo-hole .vo-ink-on, .vo-root .vo-hole .vo-ink-on * { pointer-events: auto; }

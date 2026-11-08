@@ -1,0 +1,912 @@
+diff --git a/apps/common/main/lib/controller/LayoutManager.js b/apps/common/main/lib/controller/LayoutManager.js
+index ffb93da7..359bb26c 100644
+--- a/apps/common/main/lib/controller/LayoutManager.js
++++ b/apps/common/main/lib/controller/LayoutManager.js
+@@ -80,7 +80,10 @@ Common.UI.LayoutManager = new(function() {
+         }
+     };
+ 
++    // Volcanium (2026-11-06) : onglets retirés de l'interface (la collaboration et les modules seront gérés autrement).
++    var _vo_hidden = {'toolbar-collaboration': true, 'toolbar-plugins': true};
+     var _isElementVisible = function(value, config, prefix) {
++        if (_vo_hidden[value]) return false;
+         !config && (config = _config);
+         if (!_licensed || !config) return true;
+ 
+diff --git a/apps/common/main/lib/view/About.js b/apps/common/main/lib/view/About.js
+index ab1d7088..9cd80c7a 100644
+--- a/apps/common/main/lib/view/About.js
++++ b/apps/common/main/lib/view/About.js
+@@ -101,6 +101,14 @@ define([
+                         '</td>',
+                     '</tr>',
+                 '</table>',
++                // Volcanium (2026-11-06) : mentions légales d'origine (AGPL v3, termes additionnels d'Ascensio System SIA). Ne pas supprimer.
++                '<div id="vo-about-legal" style="margin: 8px 0 16px; padding: 0 12px; text-align: center; font-size: 11px; line-height: 1.5; opacity: .85;">',
++                    'Volcanium est basé sur <b>ONLYOFFICE</b>, développé à l\'origine par Ascensio System SIA. Cette version est une version modifiée (2026).<br/>',
++                    'Based on <b>ONLYOFFICE</b>, originally developed by Ascensio System SIA. This is a modified version (2026).<br/>',
++                    'Licence : <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">GNU AGPL v3</a>',
++                    '<% if ("{{SOURCE_URL}}") { %> · <a href="{{SOURCE_URL}}" target="_blank">Code source / Source code</a><% } %><br/>',
++                    '<a href="https://github.com/ONLYOFFICE/DocumentServer" target="_blank">github.com/ONLYOFFICE/DocumentServer</a>',
++                '</div>',
+                 '<table id="id-about-licensee-info" cols="1" style="width: 100%; margin-top: 20px;" class="hidden margin-bottom"><tbody>',
+                     '<tr>',
+                         '<td align="center" class="padding-small"><div id="id-about-company-logo"></div></td>',
+diff --git a/apps/documenteditor/main/app/controller/Toolbar.js b/apps/documenteditor/main/app/controller/Toolbar.js
+index 65909c18..22c28057 100644
+--- a/apps/documenteditor/main/app/controller/Toolbar.js
++++ b/apps/documenteditor/main/app/controller/Toolbar.js
+@@ -3898,7 +3898,7 @@ define([
+                 $panel = drawtab.createToolbarPanel();
+                 if ($panel) {
+                     tab = {action: 'draw', caption: me.toolbar.textTabDraw, extcls: 'canedit', layoutname: 'toolbar-draw', dataHintTitle: 'C'};
+-                    me.toolbar.addTab(tab, $panel, 2);
++                    me.toolbar.addTab(tab, $panel, 10)  // Volcanium: ordre des onglets;
+                     me.toolbar.setVisible('draw', Common.UI.LayoutManager.isElementVisible('toolbar-draw'));
+                     Array.prototype.push.apply(me.toolbar.lockControls, drawtab.getView().getButtons());
+                     Array.prototype.push.apply(me.toolbar.paragraphControls, drawtab.getView().getButtons());
+@@ -3937,7 +3937,7 @@ define([
+                             $panel.append($('<div class="separator long"></div>'));
+                         }
+                         $panel.append(doctabController.createToolbarPanel());
+-                        me.toolbar.addTab(tab, $panel, 7);
++                        me.toolbar.addTab(tab, $panel, 8)  // Volcanium: ordre des onglets;
+                         me.toolbar.setVisible('protect', Common.UI.LayoutManager.isElementVisible('toolbar-protect'));
+                         Array.prototype.push.apply(me.toolbar.lockControls, doctabButtons);
+                     }
+@@ -3994,7 +3994,7 @@ define([
+             $panel = viewtab.createToolbarPanel();
+             if ($panel) {
+                 const visible = Common.UI.LayoutManager.isElementVisible('toolbar-view');
+-                me.toolbar.addTab(tab, $panel, 8);
++                me.toolbar.addTab(tab, $panel, 7)  // Volcanium: ordre des onglets;
+                 me.toolbar.setVisible('view', visible);
+                 !editmode && !compactview && visible && Common.Utils.InternalSettings.set('toolbar-active-tab', 'view'); // need to activate later
+             }
+diff --git a/apps/documenteditor/main/index.html b/apps/documenteditor/main/index.html
+index 981a512f..e22247df 100644
+--- a/apps/documenteditor/main/index.html
++++ b/apps/documenteditor/main/index.html
+@@ -1,7 +1,7 @@
+ <!doctype html>
+ <html>
+ <head>
+-    <title>ONLYOFFICE Documents</title>
++    <title>Volcanium Doc</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+@@ -17,15 +17,15 @@
+             --sk-layout-padding-placeholder: 53px auto;
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+             --sk-border-radius-toolbar: 8px;
+-            --sk-background-toolbar: #f3f3f3;
++            --sk-background-toolbar: #f7f7f8;
+             --sk-background-toolbar-controls: #fff;
+-            --sk-canvas-background: #f3f3f3;
+-            --sk-background-toolbar-header-word: #f3f3f3;
+-            --sk-background-toolbar-tab: #eaeaea;
+-            --sk-background-toolbar-button: #f9f9f9;
++            --sk-canvas-background: #f7f7f8;
++            --sk-background-toolbar-header-word: #f7f7f8;
++            --sk-background-toolbar-tab: #ececee;
++            --sk-background-toolbar-button: #ffffff;
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-canvas-content-background: #fff;
+-            --sk-canvas-page-border: #dde0e5;
++            --sk-canvas-page-border: #e4e4e7;
+             --sk-canvas-line: rgba(0,0,0,.05);
+         }
+ 
+@@ -38,26 +38,26 @@
+             /* --shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06) */
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar-header-word: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar-header-word: #0f0f10;
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar: #0f0f10;
+ 
+-            /* --background-toolbar: #404040; */
+-            --sk-background-toolbar-controls: #404040;
++            /* --background-toolbar: #161617; */
++            --sk-background-toolbar-controls: #161617;
+ 
+-            /* --highlight-header-button-hover: #585858; */
+-            --sk-background-toolbar-tab: #585858;
++            /* --highlight-header-button-hover: #2b2b2e; */
++            --sk-background-toolbar-tab: #2b2b2e;
+ 
+-            /* --highlight-button-hover: #585858 */
+-            --sk-background-toolbar-button: #585858;
++            /* --highlight-button-hover: #2b2b2e */
++            --sk-background-toolbar-button: #2b2b2e;
+ 
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-layout-padding-header: 0 10px;
+ 
+-            /* --canvas-background: #222222; */
+-            --sk-canvas-background: #222222;
++            /* --canvas-background: #0f0f10; */
++            --sk-canvas-background: #0f0f10;
+ 
+             /* --canvas-content-background: #fff; */
+             --sk-canvas-content-background: #fff;
+@@ -79,10 +79,10 @@
+         /*    --sk-background-toolbar-button: #555;*/
+         /*    !*--highlight-button-hover: #555;*!*/
+ 
+-        /*    --sk-background-toolbar-controls: #404040;*/
+-        /*    !*--background-toolbar: #404040;*!*/
++        /*    --sk-background-toolbar-controls: #161617;*/
++        /*    !*--background-toolbar: #161617;*!*/
+ 
+-        /*    --sk-shadow-toolbar: inset 0 -1px #616161;*/
++        /*    --sk-shadow-toolbar: inset 0 -1px #3a3a3f;*/
+         /*    !*--border-toolbar: #2a2a2a;*!*/
+ 
+         /*    --sk-canvas-background: #555;*/
+@@ -93,8 +93,8 @@
+         /*}*/
+ 
+         .theme-type-dark.content-theme-dark .loadmask {
+-            --sk-canvas-content-background: #3a3a3a;
+-            --sk-canvas-page-border: #616161;
++            --sk-canvas-content-background: #1b1b1d;
++            --sk-canvas-page-border: #3a3a3f;
+             --sk-canvas-line: rgba(255,255,255,.05);
+         }
+ 
+@@ -379,6 +379,7 @@
+     <!-- debug begin -->
+     <link rel="stylesheet/less" type="text/css" href="resources/less/app.less" />
+     <!-- debug end -->
++<style id="vo-boot">#viewport,#loading-mask,.asc-loadmask{visibility:hidden!important}html,body{background:#0f0f10!important}body::after{content:"";position:fixed;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border:3px solid rgba(255,255,255,.14);border-top-color:#ff714d;border-radius:50%;animation:vospin .8s linear infinite;z-index:2147483000}@keyframes vospin{to{transform:rotate(360deg)}}</style><script>setTimeout(function(){var s=document.getElementById("vo-boot");if(s)s.remove()},45000)</script>
+ </head>
+ <body role="application">
+     <script src="../../common/main/lib/util/htmlutils.js"></script>
+@@ -533,5 +534,6 @@
+     </script>
+     <!-- application -->
+     <script data-main="app_dev" src="../../../vendor/requirejs/require.js"></script>
++<script src="../../common/main/resources/volcanium-ui/vo-editor-ui.js" defer></script>
+ </body>
+ </html>
+diff --git a/apps/documenteditor/main/index.html.deploy b/apps/documenteditor/main/index.html.deploy
+index 3df1bc54..8d233621 100644
+--- a/apps/documenteditor/main/index.html.deploy
++++ b/apps/documenteditor/main/index.html.deploy
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+-    <title>ONLYOFFICE Document Editor</title>
++    <title>Volcanium Doc</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+     <meta name="description" content="" />
+@@ -19,15 +19,15 @@
+             --sk-layout-padding-placeholder: 53px auto;
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+             --sk-border-radius-toolbar: 8px;
+-            --sk-background-toolbar: #f3f3f3;
++            --sk-background-toolbar: #f7f7f8;
+             --sk-background-toolbar-controls: #fff;
+-            --sk-canvas-background: #f3f3f3;
+-            --sk-background-toolbar-header-word: #f3f3f3;
+-            --sk-background-toolbar-tab: #eaeaea;
+-            --sk-background-toolbar-button: #f9f9f9;
++            --sk-canvas-background: #f7f7f8;
++            --sk-background-toolbar-header-word: #f7f7f8;
++            --sk-background-toolbar-tab: #ececee;
++            --sk-background-toolbar-button: #ffffff;
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-canvas-content-background: #fff;
+-            --sk-canvas-page-border: #dde0e5;
++            --sk-canvas-page-border: #e4e4e7;
+             --sk-canvas-line: rgba(0,0,0,.05);
+         }
+ 
+@@ -40,26 +40,26 @@
+             /* --shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06) */
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar-header-word: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar-header-word: #0f0f10;
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar: #0f0f10;
+ 
+-            /* --background-toolbar: #404040; */
+-            --sk-background-toolbar-controls: #404040;
++            /* --background-toolbar: #161617; */
++            --sk-background-toolbar-controls: #161617;
+ 
+-            /* --highlight-header-button-hover: #585858; */
+-            --sk-background-toolbar-tab: #585858;
++            /* --highlight-header-button-hover: #2b2b2e; */
++            --sk-background-toolbar-tab: #2b2b2e;
+ 
+-            /* --highlight-button-hover: #585858 */
+-            --sk-background-toolbar-button: #585858;
++            /* --highlight-button-hover: #2b2b2e */
++            --sk-background-toolbar-button: #2b2b2e;
+ 
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-layout-padding-header: 0 10px;
+ 
+-            /* --canvas-background: #222222; */
+-            --sk-canvas-background: #222222;
++            /* --canvas-background: #0f0f10; */
++            --sk-canvas-background: #0f0f10;
+ 
+             /* --canvas-content-background: #fff; */
+             --sk-canvas-content-background: #fff;
+@@ -69,8 +69,8 @@
+         }
+ 
+         .theme-type-dark.content-theme-dark .loadmask {
+-            --sk-canvas-content-background: #3a3a3a;
+-            --sk-canvas-page-border: #616161;
++            --sk-canvas-content-background: #1b1b1d;
++            --sk-canvas-page-border: #3a3a3f;
+             --sk-canvas-line: rgba(255,255,255,.05);
+         }
+ 
+@@ -318,6 +318,7 @@
+ 
+     <script src="../../../../../apps/common/main/lib/util/desktopinit.js?__inline=true"></script>
+     <script src="../../../../../apps/common/main/lib/util/themeinit.js?__inline=true"></script>
++<style id="vo-boot">#viewport,#loading-mask,.asc-loadmask{visibility:hidden!important}html,body{background:#0f0f10!important}body::after{content:"";position:fixed;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border:3px solid rgba(255,255,255,.14);border-top-color:#ff714d;border-radius:50%;animation:vospin .8s linear infinite;z-index:2147483000}@keyframes vospin{to{transform:rotate(360deg)}}</style><script>setTimeout(function(){var s=document.getElementById("vo-boot");if(s)s.remove()},45000)</script>
+ </head>
+ <body role="application">
+     <div class="inlined-svg"></div>
+@@ -439,5 +440,6 @@
+     </script>
+ 
+     <link rel="stylesheet" href="../../../apps/documenteditor/main/resources/css/app.css" media="print" onload="this.media='all'">
++<script src="../../common/main/resources/volcanium-ui/vo-editor-ui.js" defer></script>
+ </body>
+ </html>
+diff --git a/apps/documenteditor/main/index_loader.html b/apps/documenteditor/main/index_loader.html
+index 701351df..530f19d6 100644
+--- a/apps/documenteditor/main/index_loader.html
++++ b/apps/documenteditor/main/index_loader.html
+@@ -1,7 +1,7 @@
+ <!doctype html>
+ <html>
+ <head>
+-    <title>ONLYOFFICE Documents</title>
++    <title>Volcanium Doc</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+diff --git a/apps/documenteditor/main/index_loader.html.deploy b/apps/documenteditor/main/index_loader.html.deploy
+index d16cab46..ab1add62 100644
+--- a/apps/documenteditor/main/index_loader.html.deploy
++++ b/apps/documenteditor/main/index_loader.html.deploy
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+-    <title>ONLYOFFICE Document Editor</title>
++    <title>Volcanium Doc</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+     <meta name="description" content="" />
+diff --git a/apps/documenteditor/main/resources/less/app.less b/apps/documenteditor/main/resources/less/app.less
+index 388fc709..4b9480f3 100644
+--- a/apps/documenteditor/main/resources/less/app.less
++++ b/apps/documenteditor/main/resources/less/app.less
+@@ -16,6 +16,12 @@
+ @import "../../../../common/main/resources/less/colors-table-gray.less";
+ @import "../../../../common/main/resources/less/colors-table-white.less";
+ @import "../../../../common/main/resources/less/colors-table-night.less";
++// Volcanium (texte, bleu) : accent de l'éditeur, police et rayons de la suite (voir colors-table-volcanium.less). Modifié le 2026-11-06.
++@import "../../../../common/main/resources/less/color-tokens.less";
++@vo-50: #fff1ed; @vo-100: #ffe0d8; @vo-200: #ffc2b3; @vo-300: #ff9d85; @vo-400: #ff714d; @vo-500: #e9552f; @vo-600: #d4400f; @vo-700: #a8320c; @vo-800: #7c2509; @vo-900: #511806; @ed-400: @blue-400; @ed-600: @blue-600;
++@import "../../../../common/main/resources/less/colors-table-volcanium.less";
++@font-family-sans-serif: "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
++@border-radius-base: 5px; @border-radius-large: 7px; @border-radius-small: 3px;
+ 
+ //
+ // Bootstrap
+@@ -288,3 +294,8 @@
+         }
+     }
+ }
++
++// Volcanium : logo de l'éditeur (remplace celui d'origine). Modifié le 2026-11-06.
++body .extra #header-logo i { width: 156px; background-image: ~"url('@{common-image-const-path}/header/vo-logo-doc.svg')"; }
++body .extra #header-logo.logo-light i { background-image: ~"url('@{common-image-const-path}/header/vo-logo-doc-dark.svg')"; }
++@import "../../../../common/main/resources/less/volcanium-ui.less"; // Volcanium (2026-11-06)
+diff --git a/apps/presentationeditor/main/app/controller/Toolbar.js b/apps/presentationeditor/main/app/controller/Toolbar.js
+index 629abc19..536f8906 100644
+--- a/apps/presentationeditor/main/app/controller/Toolbar.js
++++ b/apps/presentationeditor/main/app/controller/Toolbar.js
+@@ -2775,7 +2775,7 @@ define([
+                 $panel = drawtab.createToolbarPanel();
+                 if ($panel) {
+                     tab = {action: 'draw', caption: me.toolbar.textTabDraw, extcls: 'canedit', layoutname: 'toolbar-draw', dataHintTitle: 'C'};
+-                    me.toolbar.addTab(tab, $panel, 2);
++                    me.toolbar.addTab(tab, $panel, 10)  // Volcanium: ordre des onglets;
+                     me.toolbar.setVisible('draw', Common.UI.LayoutManager.isElementVisible('toolbar-draw'));
+                     me.btnsDrawTab = drawtab.getView().getButtons();
+                     Array.prototype.push.apply(me.toolbar.lockControls, me.btnsDrawTab);
+@@ -2841,7 +2841,7 @@ define([
+             $panel = viewtab.createToolbarPanel();
+             if ($panel) {
+                 var visible = Common.UI.LayoutManager.isElementVisible('toolbar-view');
+-                me.toolbar.addTab(tab, $panel, 9);
++                me.toolbar.addTab(tab, $panel, 7)  // Volcanium: ordre des onglets;
+                 me.toolbar.setVisible('view', visible);
+                 !editmode && !compactview && visible && Common.Utils.InternalSettings.set('toolbar-active-tab', 'view'); // need to activate later
+             }
+diff --git a/apps/presentationeditor/main/index.html b/apps/presentationeditor/main/index.html
+index 12a818e9..c8eafb9f 100644
+--- a/apps/presentationeditor/main/index.html
++++ b/apps/presentationeditor/main/index.html
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html style="width:100%; height:100%;">
+ <head>
+-    <title>ONLYOFFICE Presentation Editor</title>
++    <title>Volcanium Présentation</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+@@ -15,15 +15,15 @@
+             --sk-layout-padding-header: 0 10px;
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+             --sk-border-radius-toolbar: 8px;
+-            --sk-background-toolbar: #f3f3f3;
++            --sk-background-toolbar: #f7f7f8;
+             --sk-background-toolbar-controls: #fff;
+-            --sk-canvas-background: #f3f3f3;
+-            --sk-background-toolbar-header-slide: #f3f3f3;
+-            --sk-background-toolbar-tab: #eaeaea;
+-            --sk-background-toolbar-button: #f9f9f9;
++            --sk-canvas-background: #f7f7f8;
++            --sk-background-toolbar-header-slide: #f7f7f8;
++            --sk-background-toolbar-tab: #ececee;
++            --sk-background-toolbar-button: #ffffff;
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-canvas-content-background: #fff;
+-            --sk-canvas-page-border: #dde0e5;
++            --sk-canvas-page-border: #e4e4e7;
+             --sk-canvas-line: rgba(0,0,0,.05);
+         }
+ 
+@@ -35,26 +35,26 @@
+             /* --shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06) */
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar-header-slide: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar-header-slide: #0f0f10;
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar: #0f0f10;
+ 
+-            /* --background-toolbar: #404040; */
+-            --sk-background-toolbar-controls: #404040;
++            /* --background-toolbar: #161617; */
++            --sk-background-toolbar-controls: #161617;
+ 
+-            /* --highlight-header-button-hover: #585858; */
+-            --sk-background-toolbar-tab: #585858;
++            /* --highlight-header-button-hover: #2b2b2e; */
++            --sk-background-toolbar-tab: #2b2b2e;
+ 
+-            /* --highlight-button-hover: #585858 */
+-            --sk-background-toolbar-button: #585858;
++            /* --highlight-button-hover: #2b2b2e */
++            --sk-background-toolbar-button: #2b2b2e;
+ 
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-layout-padding-header: 0 10px;
+ 
+-            /* --canvas-background: #222222; */
+-            --sk-canvas-background: #222222;
++            /* --canvas-background: #0f0f10; */
++            --sk-canvas-background: #0f0f10;
+ 
+             /* --canvas-content-background: #fff; */
+             --sk-canvas-content-background: #fff;
+@@ -65,7 +65,7 @@
+ 
+         /* .theme-dark, .theme-type-dark {
+             --toolbar-header-presentation: #2a2a2a;
+-            --background-toolbar: #404040;
++            --background-toolbar: #161617;
+             --border-toolbar: #2a2a2a;
+             --highlight-button-hover: #606060;
+             --highlight-header-button-hover: rgba(255,255,255,.15);
+@@ -365,6 +365,7 @@
+     <link rel="stylesheet/less" type="text/css" href="resources/less/app.less" />
+     <!-- debug end -->
+     <script src="../../common/main/lib/util/themeinit.js"></script>
++<style id="vo-boot">#viewport,#loading-mask,.asc-loadmask{visibility:hidden!important}html,body{background:#0f0f10!important}body::after{content:"";position:fixed;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border:3px solid rgba(255,255,255,.14);border-top-color:#ff714d;border-radius:50%;animation:vospin .8s linear infinite;z-index:2147483000}@keyframes vospin{to{transform:rotate(360deg)}}</style><script>setTimeout(function(){var s=document.getElementById("vo-boot");if(s)s.remove()},45000)</script>
+ </head>
+ <body role="application">
+     <script src="../../common/main/lib/util/htmlutils.js"></script>
+@@ -510,5 +511,6 @@
+ 
+     <!-- application -->
+     <script data-main="app_dev" src="../../../vendor/requirejs/require.js"></script>
++<script src="../../common/main/resources/volcanium-ui/vo-editor-ui.js" defer></script>
+ </body>
+ </html>
+diff --git a/apps/presentationeditor/main/index.html.deploy b/apps/presentationeditor/main/index.html.deploy
+index 0810963d..d291b0eb 100644
+--- a/apps/presentationeditor/main/index.html.deploy
++++ b/apps/presentationeditor/main/index.html.deploy
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html style="width:100%; height:100%;">
+ <head>
+-    <title>ONLYOFFICE Presentation Editor</title>
++    <title>Volcanium Présentation</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+     <meta name="description" content="" />
+@@ -17,15 +17,15 @@
+             --sk-layout-padding-header: 0 10px;
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+             --sk-border-radius-toolbar: 8px;
+-            --sk-background-toolbar: #f3f3f3;
++            --sk-background-toolbar: #f7f7f8;
+             --sk-background-toolbar-controls: #fff;
+-            --sk-canvas-background: #f3f3f3;
+-            --sk-background-toolbar-header-slide: #f3f3f3;
+-            --sk-background-toolbar-tab: #eaeaea;
+-            --sk-background-toolbar-button: #f9f9f9;
++            --sk-canvas-background: #f7f7f8;
++            --sk-background-toolbar-header-slide: #f7f7f8;
++            --sk-background-toolbar-tab: #ececee;
++            --sk-background-toolbar-button: #ffffff;
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-canvas-content-background: #fff;
+-            --sk-canvas-page-border: #dde0e5;
++            --sk-canvas-page-border: #e4e4e7;
+             --sk-canvas-line: rgba(0,0,0,.05);
+         }
+ 
+@@ -37,26 +37,26 @@
+             /* --shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06) */
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar-header-slide: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar-header-slide: #0f0f10;
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar: #0f0f10;
+ 
+-            /* --background-toolbar: #404040; */
+-            --sk-background-toolbar-controls: #404040;
++            /* --background-toolbar: #161617; */
++            --sk-background-toolbar-controls: #161617;
+ 
+-            /* --highlight-header-button-hover: #585858; */
+-            --sk-background-toolbar-tab: #585858;
++            /* --highlight-header-button-hover: #2b2b2e; */
++            --sk-background-toolbar-tab: #2b2b2e;
+ 
+-            /* --highlight-button-hover: #585858 */
+-            --sk-background-toolbar-button: #585858;
++            /* --highlight-button-hover: #2b2b2e */
++            --sk-background-toolbar-button: #2b2b2e;
+ 
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-layout-padding-header: 0 10px;
+ 
+-            /* --canvas-background: #222222; */
+-            --sk-canvas-background: #222222;
++            /* --canvas-background: #0f0f10; */
++            --sk-canvas-background: #0f0f10;
+ 
+             /* --canvas-content-background: #fff; */
+             --sk-canvas-content-background: #fff;
+@@ -335,6 +335,7 @@
+ 
+     <script src="../../../../../apps/common/main/lib/util/desktopinit.js?__inline=true"></script>
+     <script src="../../../../../apps/common/main/lib/util/themeinit.js?__inline=true"></script>
++<style id="vo-boot">#viewport,#loading-mask,.asc-loadmask{visibility:hidden!important}html,body{background:#0f0f10!important}body::after{content:"";position:fixed;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border:3px solid rgba(255,255,255,.14);border-top-color:#ff714d;border-radius:50%;animation:vospin .8s linear infinite;z-index:2147483000}@keyframes vospin{to{transform:rotate(360deg)}}</style><script>setTimeout(function(){var s=document.getElementById("vo-boot");if(s)s.remove()},45000)</script>
+ </head>
+ <body role="application">
+     <div class="inlined-svg"></div>
+@@ -459,5 +460,6 @@
+     </script>
+ 
+     <link rel="stylesheet" href="../../../apps/presentationeditor/main/resources/css/app.css" media="print" onload="this.media='all'">
++<script src="../../common/main/resources/volcanium-ui/vo-editor-ui.js" defer></script>
+ </body>
+ </html>
+diff --git a/apps/presentationeditor/main/index_loader.html b/apps/presentationeditor/main/index_loader.html
+index d06e02b0..7146f9ee 100644
+--- a/apps/presentationeditor/main/index_loader.html
++++ b/apps/presentationeditor/main/index_loader.html
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html style="width:100%; height:100%;">
+ <head>
+-    <title>ONLYOFFICE Presentation Editor</title>
++    <title>Volcanium Présentation</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+diff --git a/apps/presentationeditor/main/index_loader.html.deploy b/apps/presentationeditor/main/index_loader.html.deploy
+index 9f8a1337..61c64253 100644
+--- a/apps/presentationeditor/main/index_loader.html.deploy
++++ b/apps/presentationeditor/main/index_loader.html.deploy
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html style="width:100%; height:100%;">
+ <head>
+-    <title>ONLYOFFICE Presentation Editor</title>
++    <title>Volcanium Présentation</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+     <meta name="description" content="" />
+diff --git a/apps/presentationeditor/main/resources/less/app.less b/apps/presentationeditor/main/resources/less/app.less
+index a21d9830..68a48599 100644
+--- a/apps/presentationeditor/main/resources/less/app.less
++++ b/apps/presentationeditor/main/resources/less/app.less
+@@ -16,6 +16,12 @@
+ @import "../../../../common/main/resources/less/colors-table-gray.less";
+ @import "../../../../common/main/resources/less/colors-table-white.less";
+ @import "../../../../common/main/resources/less/colors-table-night.less";
++// Volcanium (présentation, rouge) : accent de l'éditeur, police et rayons de la suite (voir colors-table-volcanium.less). Modifié le 2026-11-06.
++@import "../../../../common/main/resources/less/color-tokens.less";
++@vo-50: #fff1ed; @vo-100: #ffe0d8; @vo-200: #ffc2b3; @vo-300: #ff9d85; @vo-400: #ff714d; @vo-500: #e9552f; @vo-600: #d4400f; @vo-700: #a8320c; @vo-800: #7c2509; @vo-900: #511806; @ed-400: @red-400; @ed-600: @red-600;
++@import "../../../../common/main/resources/less/colors-table-volcanium.less";
++@font-family-sans-serif: "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
++@border-radius-base: 5px; @border-radius-large: 7px; @border-radius-small: 3px;
+ //
+ // Bootstrap
+ // --------------------------------------------------
+@@ -292,3 +298,8 @@
+         }
+     }
+ }
++
++// Volcanium : logo de l'éditeur (remplace celui d'origine). Modifié le 2026-11-06.
++body .extra #header-logo i { width: 242px; background-image: ~"url('@{common-image-const-path}/header/vo-logo-slides.svg')"; }
++body .extra #header-logo.logo-light i { background-image: ~"url('@{common-image-const-path}/header/vo-logo-slides-dark.svg')"; }
++@import "../../../../common/main/resources/less/volcanium-ui.less"; // Volcanium (2026-11-06)
+diff --git a/apps/spreadsheeteditor/main/app/controller/Toolbar.js b/apps/spreadsheeteditor/main/app/controller/Toolbar.js
+index b01af3c2..0b9af634 100644
+--- a/apps/spreadsheeteditor/main/app/controller/Toolbar.js
++++ b/apps/spreadsheeteditor/main/app/controller/Toolbar.js
+@@ -4694,7 +4694,7 @@ define([
+                     $panel = drawtab.createToolbarPanel();
+                     if ($panel) {
+                         tab = {action: 'draw', caption: me.toolbar.textTabDraw, extcls: 'canedit', layoutname: 'toolbar-draw', dataHintTitle: 'C'};
+-                        me.toolbar.addTab(tab, $panel, 2);
++                        me.toolbar.addTab(tab, $panel, 10)  // Volcanium: ordre des onglets;
+                         me.toolbar.setVisible('draw', Common.UI.LayoutManager.isElementVisible('toolbar-draw'));
+                         Array.prototype.push.apply(me.toolbar.lockControls, drawtab.getView().getButtons());
+                     }
+@@ -4794,7 +4794,7 @@ define([
+                             (config.isSignatureSupport || config.isPasswordSupport) && $panel.append($('<div class="separator long"></div>'));
+                             var wbtab = me.getApplication().getController('WBProtection');
+                             $panel.append(wbtab.createToolbarPanel());
+-                            me.toolbar.addTab(tab, $panel, 7);
++                            me.toolbar.addTab(tab, $panel, 8)  // Volcanium: ordre des onglets;
+                             me.toolbar.setVisible('protect', Common.UI.LayoutManager.isElementVisible('toolbar-protect'));
+                             Array.prototype.push.apply(me.toolbar.lockControls, wbtab.getView('WBProtection').getButtons());
+                         }
+@@ -4810,7 +4810,7 @@ define([
+                 var $panel = viewtab.createToolbarPanel();
+                 if ($panel) {
+                     var visible = Common.UI.LayoutManager.isElementVisible('toolbar-view');
+-                    me.toolbar.addTab(tab, $panel, 8);
++                    me.toolbar.addTab(tab, $panel, 7)  // Volcanium: ordre des onglets;
+                     me.toolbar.setVisible('view', visible);
+                     !editmode && !compactview && visible && Common.Utils.InternalSettings.set('toolbar-active-tab', 'view'); // need to activate later
+                 }
+diff --git a/apps/spreadsheeteditor/main/index.html b/apps/spreadsheeteditor/main/index.html
+index 686ccb4e..a89a0639 100644
+--- a/apps/spreadsheeteditor/main/index.html
++++ b/apps/spreadsheeteditor/main/index.html
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+-    <title>ONLYOFFICE Document Editor</title>
++    <title>Volcanium Table</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+@@ -14,15 +14,15 @@
+             --sk-layout-padding-header: 0 10px;
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+             --sk-border-radius-toolbar: 8px;
+-            --sk-background-toolbar: #f3f3f3;
++            --sk-background-toolbar: #f7f7f8;
+             --sk-background-toolbar-controls: #fff;
+-            --sk-canvas-background: #f3f3f3;
+-            --sk-background-toolbar-header-cell: #f3f3f3;
+-            --sk-background-toolbar-tab: #eaeaea;
+-            --sk-background-toolbar-button: #f9f9f9;
++            --sk-canvas-background: #f7f7f8;
++            --sk-background-toolbar-header-cell: #f7f7f8;
++            --sk-background-toolbar-tab: #ececee;
++            --sk-background-toolbar-button: #ffffff;
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-canvas-content-background: #fff;
+-            --sk-canvas-page-border: #dde0e5;
++            --sk-canvas-page-border: #e4e4e7;
+             --sk-canvas-line: rgba(0,0,0,.05);
+             --sk-height-formula: 38px;
+             --sk-padding-formula: 10px 10px 4px 10px;
+@@ -39,26 +39,26 @@
+             /* --shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06) */
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar-header-cell: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar-header-cell: #0f0f10;
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar: #0f0f10;
+ 
+-            /* --background-toolbar: #404040; */
+-            --sk-background-toolbar-controls: #404040;
++            /* --background-toolbar: #161617; */
++            --sk-background-toolbar-controls: #161617;
+ 
+-            /* --highlight-header-button-hover: #585858; */
+-            --sk-background-toolbar-tab: #585858;
++            /* --highlight-header-button-hover: #2b2b2e; */
++            --sk-background-toolbar-tab: #2b2b2e;
+ 
+-            /* --highlight-button-hover: #585858 */
+-            --sk-background-toolbar-button: #585858;
++            /* --highlight-button-hover: #2b2b2e */
++            --sk-background-toolbar-button: #2b2b2e;
+ 
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-layout-padding-header: 0 10px;
+ 
+-            /* --canvas-background: #222222; */
+-            --sk-canvas-background: #222222;
++            /* --canvas-background: #0f0f10; */
++            --sk-canvas-background: #0f0f10;
+ 
+             /* --canvas-content-background: #fff; */
+             --sk-canvas-content-background: #fff;
+@@ -74,15 +74,15 @@
+         }
+ 
+         .theme-type-dark.content-theme-dark .loadmask {
+-            --sk-canvas-content-background: #3a3a3a;
+-            --sk-canvas-page-border: #616161;
+-            --sk-canvas-cell-line: #616161;
++            --sk-canvas-content-background: #1b1b1d;
++            --sk-canvas-page-border: #3a3a3f;
++            --sk-canvas-cell-line: #3a3a3f;
+             --sk-canvas-cell-background: var(--background-pane);
+         }
+ 
+         /* .theme-dark, .theme-type-dark {
+             --toolbar-header-spreadsheet: #2a2a2a;
+-            --background-toolbar: #404040;
++            --background-toolbar: #161617;
+             --background-normal: #333;
+             --border-toolbar: #2a2a2a;
+             --highlight-button-hover: #606060;
+@@ -414,6 +414,7 @@
+     <link rel="stylesheet/less" type="text/css" href="resources/less/app.less" />
+     <!-- debug end -->
+     <script src="../../common/main/lib/util/themeinit.js"></script>
++<style id="vo-boot">#viewport,#loading-mask,.asc-loadmask{visibility:hidden!important}html,body{background:#0f0f10!important}body::after{content:"";position:fixed;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border:3px solid rgba(255,255,255,.14);border-top-color:#ff714d;border-radius:50%;animation:vospin .8s linear infinite;z-index:2147483000}@keyframes vospin{to{transform:rotate(360deg)}}</style><script>setTimeout(function(){var s=document.getElementById("vo-boot");if(s)s.remove()},45000)</script>
+ </head>
+ 
+ <body role="application">
+@@ -579,5 +580,6 @@
+     <!-- application -->
+     <script data-main="app_dev" src="../../../vendor/requirejs/require.js"></script>
+ 
++<script src="../../common/main/resources/volcanium-ui/vo-editor-ui.js" defer></script>
+ </body>
+ </html>
+diff --git a/apps/spreadsheeteditor/main/index.html.deploy b/apps/spreadsheeteditor/main/index.html.deploy
+index 4feeffdf..5981c17c 100644
+--- a/apps/spreadsheeteditor/main/index.html.deploy
++++ b/apps/spreadsheeteditor/main/index.html.deploy
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+-    <title>ONLYOFFICE Document Editor</title>
++    <title>Volcanium Table</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+     <meta name="description" content="" />
+@@ -17,15 +17,15 @@
+             --sk-layout-padding-header: 0 10px;
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+             --sk-border-radius-toolbar: 8px;
+-            --sk-background-toolbar: #f3f3f3;
++            --sk-background-toolbar: #f7f7f8;
+             --sk-background-toolbar-controls: #fff;
+-            --sk-canvas-background: #f3f3f3;
+-            --sk-background-toolbar-header-cell: #f3f3f3;
+-            --sk-background-toolbar-tab: #eaeaea;
+-            --sk-background-toolbar-button: #f9f9f9;
++            --sk-canvas-background: #f7f7f8;
++            --sk-background-toolbar-header-cell: #f7f7f8;
++            --sk-background-toolbar-tab: #ececee;
++            --sk-background-toolbar-button: #ffffff;
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-canvas-content-background: #fff;
+-            --sk-canvas-page-border: #dde0e5;
++            --sk-canvas-page-border: #e4e4e7;
+             --sk-canvas-line: rgba(0,0,0,.05);
+             --sk-height-formula: 38px;
+             --sk-padding-formula: 10px 10px 4px 10px;
+@@ -42,26 +42,26 @@
+             /* --shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06) */
+             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar-header-cell: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar-header-cell: #0f0f10;
+ 
+-            /* --toolbar-header-document: #222222 */
+-            --sk-background-toolbar: #222222;
++            /* --toolbar-header-document: #0f0f10 */
++            --sk-background-toolbar: #0f0f10;
+ 
+-            /* --background-toolbar: #404040; */
+-            --sk-background-toolbar-controls: #404040;
++            /* --background-toolbar: #161617; */
++            --sk-background-toolbar-controls: #161617;
+ 
+-            /* --highlight-header-button-hover: #585858; */
+-            --sk-background-toolbar-tab: #585858;
++            /* --highlight-header-button-hover: #2b2b2e; */
++            --sk-background-toolbar-tab: #2b2b2e;
+ 
+-            /* --highlight-button-hover: #585858 */
+-            --sk-background-toolbar-button: #585858;
++            /* --highlight-button-hover: #2b2b2e */
++            --sk-background-toolbar-button: #2b2b2e;
+ 
+             --sk-layout-padding-toolbar-controls: 0 8px;
+             --sk-layout-padding-header: 0 10px;
+ 
+-            /* --canvas-background: #222222; */
+-            --sk-canvas-background: #222222;
++            /* --canvas-background: #0f0f10; */
++            --sk-canvas-background: #0f0f10;
+ 
+             /* --canvas-content-background: #fff; */
+             --sk-canvas-content-background: #fff;
+@@ -77,9 +77,9 @@
+         }
+ 
+         .theme-type-dark.content-theme-dark .loadmask {
+-            --sk-canvas-content-background: #3a3a3a;
+-            --sk-canvas-page-border: #616161;
+-            --sk-canvas-cell-line: #616161;
++            --sk-canvas-content-background: #1b1b1d;
++            --sk-canvas-page-border: #3a3a3f;
++            --sk-canvas-cell-line: #3a3a3f;
+             --sk-canvas-cell-background: var(--background-pane);
+         }
+ 
+@@ -389,6 +389,7 @@
+     <link rel="stylesheet" type="text/css" href="../../../../sdkjs/cell/css/main.css"/>
+     <script src="../../../../../apps/common/main/lib/util/desktopinit.js?__inline=true"></script>
+     <script src="../../../../../apps/common/main/lib/util/themeinit.js?__inline=true"></script>
++<style id="vo-boot">#viewport,#loading-mask,.asc-loadmask{visibility:hidden!important}html,body{background:#0f0f10!important}body::after{content:"";position:fixed;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border:3px solid rgba(255,255,255,.14);border-top-color:#ff714d;border-radius:50%;animation:vospin .8s linear infinite;z-index:2147483000}@keyframes vospin{to{transform:rotate(360deg)}}</style><script>setTimeout(function(){var s=document.getElementById("vo-boot");if(s)s.remove()},45000)</script>
+ </head>
+ <body role="application">
+     <div class="inlined-svg"></div>
+@@ -526,5 +527,6 @@
+         isIEBrowser === true ? require(['ie/app']) : require(['app']);
+     </script>
+     <link rel="stylesheet" href="../../../apps/spreadsheeteditor/main/resources/css/app.css" media="print" onload="this.media='all'">    
++<script src="../../common/main/resources/volcanium-ui/vo-editor-ui.js" defer></script>
+ </body>
+ </html>
+\ No newline at end of file
+diff --git a/apps/spreadsheeteditor/main/index_loader.html b/apps/spreadsheeteditor/main/index_loader.html
+index 73770335..48d5afeb 100644
+--- a/apps/spreadsheeteditor/main/index_loader.html
++++ b/apps/spreadsheeteditor/main/index_loader.html
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+-    <title>ONLYOFFICE Document Editor</title>
++    <title>Volcanium Table</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+diff --git a/apps/spreadsheeteditor/main/index_loader.html.deploy b/apps/spreadsheeteditor/main/index_loader.html.deploy
+index cb18fef1..24050846 100644
+--- a/apps/spreadsheeteditor/main/index_loader.html.deploy
++++ b/apps/spreadsheeteditor/main/index_loader.html.deploy
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+-    <title>ONLYOFFICE Document Editor</title>
++    <title>Volcanium Table</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+     <meta name="description" content="" />
+diff --git a/apps/spreadsheeteditor/main/resources/less/app.less b/apps/spreadsheeteditor/main/resources/less/app.less
+index 8764b1c2..40edd498 100644
+--- a/apps/spreadsheeteditor/main/resources/less/app.less
++++ b/apps/spreadsheeteditor/main/resources/less/app.less
+@@ -16,6 +16,12 @@
+ @import "../../../../common/main/resources/less/colors-table-gray.less";
+ @import "../../../../common/main/resources/less/colors-table-white.less";
+ @import "../../../../common/main/resources/less/colors-table-night.less";
++// Volcanium (tableur, vert) : accent de l'éditeur, police et rayons de la suite (voir colors-table-volcanium.less). Modifié le 2026-11-06.
++@import "../../../../common/main/resources/less/color-tokens.less";
++@vo-50: #fff1ed; @vo-100: #ffe0d8; @vo-200: #ffc2b3; @vo-300: #ff9d85; @vo-400: #ff714d; @vo-500: #e9552f; @vo-600: #d4400f; @vo-700: #a8320c; @vo-800: #7c2509; @vo-900: #511806; @ed-400: @green-400; @ed-600: @green-600;
++@import "../../../../common/main/resources/less/colors-table-volcanium.less";
++@font-family-sans-serif: "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
++@border-radius-base: 5px; @border-radius-large: 7px; @border-radius-small: 3px;
+ //
+ // Bootstrap
+ // --------------------------------------------------
+@@ -246,3 +252,8 @@
+         --doc-placeholder-grid-fill: var(--background-pane);
+     }
+ }
++
++// Volcanium : logo de l'éditeur (remplace celui d'origine). Modifié le 2026-11-06.
++body .extra #header-logo i { width: 176px; background-image: ~"url('@{common-image-const-path}/header/vo-logo-table.svg')"; }
++body .extra #header-logo.logo-light i { background-image: ~"url('@{common-image-const-path}/header/vo-logo-table-dark.svg')"; }
++@import "../../../../common/main/resources/less/volcanium-ui.less"; // Volcanium (2026-11-06)
+diff --git a/build/Gruntfile.js b/build/Gruntfile.js
+index 51cf4dcf..dcfcd7f3 100644
+--- a/build/Gruntfile.js
++++ b/build/Gruntfile.js
+@@ -70,6 +70,10 @@ module.exports = function(grunt) {
+ 
+     global.jsreplacements = [
+                 {
++                    // Volcanium (2026-11-06) : adresse publique du code source (AGPL v3, section 13)
++                    from: /\{\{SOURCE_URL\}\}/g,
++                    to: _encode(process.env.SOURCE_URL) || ''
++                },{
+                     from: /\{\{SUPPORT_EMAIL\}\}/g,
+                     to: _encode(process.env.SUPPORT_EMAIL) || 'support@onlyoffice.com'
+                 },{
+@@ -930,7 +934,6 @@ module.exports = function(grunt) {
+     grunt.registerTask('default', ['deploy-common-component',
+                                    'deploy-documenteditor-component',
+                                    'deploy-spreadsheeteditor-component',
+-                                   'deploy-presentationeditor-component',
+-                                   'deploy-pdfeditor-component',
+-                                   'deploy-visioeditor-component']);
++                                   // Volcanium (2026-11-06) : pas d'éditeur PDF ni Visio (hors périmètre) ; les tâches restent disponibles à la main.
++                                   'deploy-presentationeditor-component']);
+ };

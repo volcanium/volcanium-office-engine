@@ -1,5 +1,8 @@
-<svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1 2a2 2 0 0 1 2-2h14l6 6v22a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2z" fill="#ED771C"/>
-    <path d="m17 0 6 6h-5a1 1 0 0 1-1-1z" fill="#000" fill-opacity=".25"/>
-    <path d="M5.003 12.449 5 12.5v10a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-10a.5.5 0 0 0-.5-.5h-13a.5.5 0 0 0-.497.449M6 13h12v9H6z" fill="#fff"/>
-</svg>
+<svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.44 1.7999999999999998h15.600000000000001l5.5200000000000005 5.5200000000000005V28.2H1.44z" fill="#fff" stroke="#e0573b" stroke-width="1" stroke-linejoin="round"/><path d="M17.04 1.7999999999999998v5.5200000000000005h5.5200000000000005" stroke="#e0573b" stroke-width="1" stroke-linejoin="round"/><g transform="translate(6.623999999999999 11.4) scale(0.4480000000000001)" fill="none" stroke="#e0573b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  
+  <path d="M3 4l18 0" />
+  <path d="M4 4v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-10" />
+  <path d="M12 16l0 4" />
+  <path d="M9 20l6 0" />
+  <path d="M8 12l3 -3l2 2l3 -3" />
+</g></svg>

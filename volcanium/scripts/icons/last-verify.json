@@ -1,0 +1,24 @@
+{
+ "checked": 9246,
+ "identical": [
+  "deploy/web-apps/apps/common/main/resources/img/controls/common-controls.png",
+  "deploy/web-apps/apps/common/main/resources/img/controls/common-controls@1.25x.png",
+  "deploy/web-apps/apps/common/main/resources/img/controls/common-controls@1.5x.png",
+  "deploy/web-apps/apps/common/main/resources/img/controls/common-controls@1.75x.png",
+  "deploy/web-apps/apps/common/main/resources/img/controls/common-controls@2x.png",
+  "apps/common/main/resources/img/controls/common-controls.png",
+  "apps/common/main/resources/img/controls/common-controls@1.25x.png",
+  "apps/common/main/resources/img/controls/common-controls@1.5x.png",
+  "apps/common/main/resources/img/controls/common-controls@1.75x.png",
+  "apps/common/main/resources/img/controls/common-controls@2x.png",
+  "apps/common/main/resources/img/toolbar/math.png",
+  "apps/common/main/resources/img/toolbar/math@1.25x.png",
+  "apps/common/main/resources/img/toolbar/math@1.5x.png",
+  "apps/common/main/resources/img/toolbar/math@1.75x.png",
+  "apps/common/main/resources/img/toolbar/math@2x.png",
+  "apps/documenteditor/main/resources/img/toolbar/contents.png",
+  "apps/documenteditor/main/resources/img/toolbar/contents@2x.png",
+  "apps/documenteditor/main/resources/img/toolbar/text_styles.png",
+  "apps/presentationeditor/main/resources/img/toolbar/themes.png"
+ ]
+}

@@ -4694,7 +4694,7 @@ define([
                     $panel = drawtab.createToolbarPanel();
                     if ($panel) {
                         tab = {action: 'draw', caption: me.toolbar.textTabDraw, extcls: 'canedit', layoutname: 'toolbar-draw', dataHintTitle: 'C'};
-                        me.toolbar.addTab(tab, $panel, 2);
+                        me.toolbar.addTab(tab, $panel, 10)  // Volcanium: ordre des onglets;
                         me.toolbar.setVisible('draw', Common.UI.LayoutManager.isElementVisible('toolbar-draw'));
                         Array.prototype.push.apply(me.toolbar.lockControls, drawtab.getView().getButtons());
                     }
@@ -4794,7 +4794,7 @@ define([
                             (config.isSignatureSupport || config.isPasswordSupport) && $panel.append($('<div class="separator long"></div>'));
                             var wbtab = me.getApplication().getController('WBProtection');
                             $panel.append(wbtab.createToolbarPanel());
-                            me.toolbar.addTab(tab, $panel, 7);
+                            me.toolbar.addTab(tab, $panel, 8)  // Volcanium: ordre des onglets;
                             me.toolbar.setVisible('protect', Common.UI.LayoutManager.isElementVisible('toolbar-protect'));
                             Array.prototype.push.apply(me.toolbar.lockControls, wbtab.getView('WBProtection').getButtons());
                         }
@@ -4810,7 +4810,7 @@ define([
                 var $panel = viewtab.createToolbarPanel();
                 if ($panel) {
                     var visible = Common.UI.LayoutManager.isElementVisible('toolbar-view');
-                    me.toolbar.addTab(tab, $panel, 8);
+                    me.toolbar.addTab(tab, $panel, 7)  // Volcanium: ordre des onglets;
                     me.toolbar.setVisible('view', visible);
                     !editmode && !compactview && visible && Common.Utils.InternalSettings.set('toolbar-active-tab', 'view'); // need to activate later
                 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html style="width:100%; height:100%;">
 <head>
-    <title>ONLYOFFICE Presentation Editor</title>
+    <title>Volcanium Présentation</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -15,15 +15,15 @@
             --sk-layout-padding-header: 0 10px;
             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
             --sk-border-radius-toolbar: 8px;
-            --sk-background-toolbar: #f3f3f3;
+            --sk-background-toolbar: #f7f7f8;
             --sk-background-toolbar-controls: #fff;
-            --sk-canvas-background: #f3f3f3;
-            --sk-background-toolbar-header-slide: #f3f3f3;
-            --sk-background-toolbar-tab: #eaeaea;
-            --sk-background-toolbar-button: #f9f9f9;
+            --sk-canvas-background: #f7f7f8;
+            --sk-background-toolbar-header-slide: #f7f7f8;
+            --sk-background-toolbar-tab: #ececee;
+            --sk-background-toolbar-button: #ffffff;
             --sk-layout-padding-toolbar-controls: 0 8px;
             --sk-canvas-content-background: #fff;
-            --sk-canvas-page-border: #dde0e5;
+            --sk-canvas-page-border: #e4e4e7;
             --sk-canvas-line: rgba(0,0,0,.05);
         }
 
@@ -35,26 +35,26 @@
             /* --shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06) */
             --sk-shadow-toolbar: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
 
-            /* --toolbar-header-document: #222222 */
-            --sk-background-toolbar-header-slide: #222222;
+            /* --toolbar-header-document: #0f0f10 */
+            --sk-background-toolbar-header-slide: #0f0f10;
 
-            /* --toolbar-header-document: #222222 */
-            --sk-background-toolbar: #222222;
+            /* --toolbar-header-document: #0f0f10 */
+            --sk-background-toolbar: #0f0f10;
 
-            /* --background-toolbar: #404040; */
-            --sk-background-toolbar-controls: #404040;
+            /* --background-toolbar: #161617; */
+            --sk-background-toolbar-controls: #161617;
 
-            /* --highlight-header-button-hover: #585858; */
-            --sk-background-toolbar-tab: #585858;
+            /* --highlight-header-button-hover: #2b2b2e; */
+            --sk-background-toolbar-tab: #2b2b2e;
 
-            /* --highlight-button-hover: #585858 */
-            --sk-background-toolbar-button: #585858;
+            /* --highlight-button-hover: #2b2b2e */
+            --sk-background-toolbar-button: #2b2b2e;
 
             --sk-layout-padding-toolbar-controls: 0 8px;
             --sk-layout-padding-header: 0 10px;
 
-            /* --canvas-background: #222222; */
-            --sk-canvas-background: #222222;
+            /* --canvas-background: #0f0f10; */
+            --sk-canvas-background: #0f0f10;
 
             /* --canvas-content-background: #fff; */
             --sk-canvas-content-background: #fff;
@@ -65,7 +65,7 @@
 
         /* .theme-dark, .theme-type-dark {
             --toolbar-header-presentation: #2a2a2a;
-            --background-toolbar: #404040;
+            --background-toolbar: #161617;
             --border-toolbar: #2a2a2a;
             --highlight-button-hover: #606060;
             --highlight-header-button-hover: rgba(255,255,255,.15);
@@ -365,6 +365,7 @@
     <link rel="stylesheet/less" type="text/css" href="resources/less/app.less" />
     <!-- debug end -->
     <script src="../../common/main/lib/util/themeinit.js"></script>
+<style id="vo-boot">#viewport,#loading-mask,.asc-loadmask{visibility:hidden!important}html,body{background:#0f0f10!important}body::after{content:"";position:fixed;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border:3px solid rgba(255,255,255,.14);border-top-color:#ff714d;border-radius:50%;animation:vospin .8s linear infinite;z-index:2147483000}@keyframes vospin{to{transform:rotate(360deg)}}</style><script>setTimeout(function(){var s=document.getElementById("vo-boot");if(s)s.remove()},45000)</script>
 </head>
 <body role="application">
     <script src="../../common/main/lib/util/htmlutils.js"></script>
@@ -510,5 +511,6 @@
 
     <!-- application -->
     <script data-main="app_dev" src="../../../vendor/requirejs/require.js"></script>
+<script src="../../common/main/resources/volcanium-ui/vo-editor-ui.js" defer></script>
 </body>
 </html>

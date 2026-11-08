@@ -1,101 +1,26 @@
-<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <symbol id="half-pt" width="60" viewBox="0 0 60 1" preserveAspectRatio="xMidYMid meet">
-        <rect opacity="0.5" width="60" height="1"/>
-    </symbol>
-    <symbol id="one-pt" width="60" viewBox="0 0 60 1" preserveAspectRatio="xMidYMid meet">
-        <rect width="60" height="1"/>
-    </symbol>
-    <symbol id="one-and-half-pt" width="60" viewBox="0 0 60 2" preserveAspectRatio="xMidYMid meet">
-        <rect width="60" height="2"/>
-    </symbol>
-    <symbol id="two-and-quarter-pt" width="60" viewBox="0 0 60 3" preserveAspectRatio="xMidYMid meet">
-        <rect width="60" height="3"/>
-    </symbol>
-    <symbol id="three-pt" width="60" viewBox="0 0 60 4" preserveAspectRatio="xMidYMid meet">
-        <rect width="60" height="4"/>
-    </symbol>
-    <symbol id="four-and-half-pt" width="60" viewBox="0 0 60 6" preserveAspectRatio="xMidYMid meet">
-        <rect width="60" height="6"/>
-    </symbol>
-    <symbol id="six-pt" width="60" viewBox="0 0 60 8" preserveAspectRatio="xMidYMid meet">
-        <rect width="60" height="8"/>
-    </symbol>
-    <symbol id="solid" width="60" height="3" viewBox="0 0 60 3">
-        <rect width="60" height="3"/>
-    </symbol>
-    <symbol id="dots" width="57" height="3" viewBox="0 0 57 3">
-        <path d="M0 0H3V3H0V0Z"/>
-        <path d="M6 0H9V3H6V0Z"/>
-        <path d="M12 0H15V3H12V0Z"/>
-        <path d="M18 0H21V3H18V0Z"/>
-        <path d="M24 0H27V3H24V0Z"/>
-        <path d="M30 0H33V3H30V0Z"/>
-        <path d="M36 0H39V3H36V0Z"/>
-        <path d="M42 0H45V3H42V0Z"/>
-        <path d="M48 0H51V3H48V0Z"/>
-        <path d="M54 0H57V3H54V0Z"/>
-    </symbol>
-    <symbol id="dashes" width="57" height="3" viewBox="0 0 57 3">
-        <path d="M0 0H9V3H0V0Z"/>
-        <path d="M12 0H21V3H12V0Z"/>
-        <path d="M24 0H33V3H24V0Z"/>
-        <path d="M36 0H45V3H36V0Z"/>
-        <path d="M48 0H57V3H48V0Z"/>
-    </symbol>
-    <symbol id="dashes-spaced" width="57" height="3" viewBox="0 0 57 3">
-        <path d="M0 0H9V3H0V0Z"/>
-        <path d="M16 0H25V3H16V0Z"/>
-        <path d="M32 0H41V3H32V0Z"/>
-        <path d="M48 0H57V3H48V0Z"/>
-    </symbol>
-    <symbol id="dash-dot" width="57" height="3" viewBox="0 0 57 3">
-        <path d="M0 0H12V3H0V0Z"/>
-        <path d="M21 0H24V3H21V0Z"/>
-        <path d="M33 0H45V3H33V0Z"/>
-        <path d="M54 0H57V3H54V0Z"/>
-    </symbol>
-    <symbol id="dashes-wide" width="60" height="3" viewBox="0 0 60 3">
-        <path d="M0 0H16V3H0V0Z"/>
-        <path d="M22 0H38V3H22V0Z"/>
-        <path d="M44 0H60V3H44V0Z"/>
-    </symbol>
-    <symbol id="wide-dash-dot" width="56" height="3" viewBox="0 0 56 3">
-        <path d="M0 0H16V3H0V0Z"/>
-        <path d="M31 0H47V3H31V0Z"/>
-        <path d="M22 0H25V3H22V0Z"/>
-        <path d="M53 0H56V3H53V0Z"/>
-    </symbol>
-    <symbol id="wide-dash-dot-dot" width="56" height="3" viewBox="0 0 56 3">
-        <path d="M0 0H16V3H0V0Z"/>
-        <path d="M40 0H56V3H40V0Z"/>
-        <path d="M22 0H25V3H22V0Z"/>
-        <path d="M31 0H34V3H31V0Z"/>
-    </symbol>
-    <symbol id="annotation-solid" width="60" height="1" viewBox="0 0 60 1">
-        <path d="M0 0h60v1H0z"/>
-    </symbol>
-    <symbol id="annotation-dots" width="58" height="1" viewBox="0 0 58 1">
-        <path d="M0 0h1v1H0zm3 0h1v1H3zm3 0h1v1H6zm3 0h1v1H9zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1z"/>
-    </symbol>
-    <symbol id="annotation-dots-dense" width="58" height="1" viewBox="0 0 58 1">
-        <path d="M0 0h1v1H0zm2 0h2v1H2zm3 0h1v1H5zm2 0h1v1H7zm2 0h2v1H9zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h1v1h-1z"/>
-    </symbol>
-    <symbol id="annotation-dashes" width="59" height="1" viewBox="0 0 59 1">
-        <path d="M0 0h2v1H0zm4 0h2v1H4zm3 0h2v1H7zm3 0h2v1h-2zm4 0h2v1h-2zm3 0h2v1h-2zm3 0h2v1h-2zm4 0h2v1h-2zm3 0h2v1h-2zm3 0h2v1h-2zm4 0h2v1h-2zm3 0h2v1h-2zm3 0h2v1h-2zm4 0h2v1h-2zm3 0h2v1h-2zm3 0h2v1h-2zm4 0h2v1h-2zm3 0h2v1h-2z"/>
-    </symbol>
-    <symbol id="annotation-dashes-dense" width="60" height="1" viewBox="0 0 60 1">
-        <path d="M0 0h2v1H0zm3 0h1v1H3zm2 0h2v1H5zm3 0h1v1H8zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h2v1h-2zm4 0h2v1h-2zm3 0h1v1h-1zm2 0h2v1h-2zm3 0h2v1h-2zm3 0h1v1h-1zm2 0h2v1h-2zm3 0h2v1h-2zm3 0h1v1h-1zm2 0h2v1h-2zm3 0h2v1h-2zm3 0h1v1h-1zm2 0h2v1h-2z"/>
-    </symbol>
-    <symbol id="annotation-dash-dot" width="60" height="1" viewBox="0 0 60 1">
-        <path d="M0 0h2v1H0zm3 0h8v1H3zm9 0h2v1h-2zm3 0h8v1h-8zm9 0h2v1h-2zm3 0h8v1h-8zm9 0h2v1h-2zm3 0h8v1h-8zm9 0h2v1h-2zm3 0h8v1h-8z"/>
-    </symbol>
-    <symbol id="annotation-dash-dot-wide" width="60" height="1" viewBox="0 0 60 1">
-        <path d="M0 0h4v1H0zm6 0h1v1H6zm3 0h4v1H9zm6 0h1v1h-1zm3 0h4v1h-4zm6 0h1v1h-1zm3 0h4v1h-4zm6 0h1v1h-1zm3 0h4v1h-4zm6 0h1v1h-1zm3 0h4v1h-4zm6 0h1v1h-1zm3 0h4v1h-4z"/>
-    </symbol>
-    <symbol id="annotation-wave" width="64" height="12" viewBox="0 0 64 12">
-        <path d="M1 6.5S4.5 1 12 1s9.5 5.5 9.5 5.5m2 5-2-5m0 0S25 1 32 1s9.5 5.5 9.5 5.5m0 0 2 5m-2-5S45 1 52 1s8.5 3.5 9.5 5.5 2 5 2 5"/>
-    </symbol>
-    <symbol id="annotation-wave-2" width="85" height="12" viewBox="0 0 85 12">
-        <path d="M1 5.5C1 5.5 6.5 0.5 14 0.5C22.8953 0.5 27.7501 3.41016 30.5 11.5M28 5.5C28 5.5 33.5 0.5 41 0.5C49.8953 0.5 54.7501 3.41016 57.5 11.5M55 5.5C55 5.5 60.5 0.5 68 0.5C76.8953 0.5 81.7501 3.41016 84.5 11.5"/>
-    </symbol>
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<symbol id="half-pt" viewBox="0 0 60 1"><rect x="0" y="0.25" width="60" height="0.5" opacity="0.5"/></symbol>
+<symbol id="one-pt" viewBox="0 0 60 1"><rect x="0" y="0" width="60" height="1"/></symbol>
+<symbol id="one-and-half-pt" viewBox="0 0 60 2"><rect x="0" y="0.25" width="60" height="1.5"/></symbol>
+<symbol id="two-and-quarter-pt" viewBox="0 0 60 3"><rect x="0" y="0.375" width="60" height="2.25"/></symbol>
+<symbol id="three-pt" viewBox="0 0 60 4"><rect x="0" y="0.5" width="60" height="3"/></symbol>
+<symbol id="four-and-half-pt" viewBox="0 0 60 6"><rect x="0" y="0.75" width="60" height="4.5"/></symbol>
+<symbol id="six-pt" viewBox="0 0 60 8"><rect x="0" y="1" width="60" height="6"/></symbol>
+<symbol id="solid" viewBox="0 0 60 3"><rect x="0" y="0.5" width="60" height="2"/></symbol>
+<symbol id="dots" viewBox="0 0 57 3"><path d="M0 1.5H57" stroke="#000" stroke-width="2" stroke-dasharray="1.2 2.2" fill="none"/></symbol>
+<symbol id="dashes" viewBox="0 0 57 3"><path d="M0 1.5H57" stroke="#000" stroke-width="2" stroke-dasharray="6 3" fill="none"/></symbol>
+<symbol id="dashes-spaced" viewBox="0 0 57 3"><path d="M0 1.5H57" stroke="#000" stroke-width="2" stroke-dasharray="4 5" fill="none"/></symbol>
+<symbol id="dash-dot" viewBox="0 0 57 3"><path d="M0 1.5H57" stroke="#000" stroke-width="2" stroke-dasharray="8 3 2 3" fill="none"/></symbol>
+<symbol id="dashes-wide" viewBox="0 0 60 3"><path d="M0 1.5H60" stroke="#000" stroke-width="2" stroke-dasharray="6 3" fill="none"/></symbol>
+<symbol id="wide-dash-dot" viewBox="0 0 56 3"><path d="M0 1.5H56" stroke="#000" stroke-width="2" stroke-dasharray="8 3 2 3" fill="none"/></symbol>
+<symbol id="wide-dash-dot-dot" viewBox="0 0 56 3"><path d="M0 1.5H56" stroke="#000" stroke-width="2" stroke-dasharray="8 3 2 3 2 3" fill="none"/></symbol>
+<symbol id="annotation-solid" viewBox="0 0 60 1"><rect x="0" y="0" width="60" height="1"/></symbol>
+<symbol id="annotation-dots" viewBox="0 0 58 1"><path d="M0 0.5H58" stroke="#000" stroke-width="1" stroke-dasharray="1.2 2.2" fill="none"/></symbol>
+<symbol id="annotation-dots-dense" viewBox="0 0 58 1"><path d="M0 0.5H58" stroke="#000" stroke-width="1" stroke-dasharray="1 1.5" fill="none"/></symbol>
+<symbol id="annotation-dashes" viewBox="0 0 59 1"><path d="M0 0.5H59" stroke="#000" stroke-width="1" stroke-dasharray="6 3" fill="none"/></symbol>
+<symbol id="annotation-dashes-dense" viewBox="0 0 60 1"><path d="M0 0.5H60" stroke="#000" stroke-width="1" stroke-dasharray="3 1.5" fill="none"/></symbol>
+<symbol id="annotation-dash-dot" viewBox="0 0 60 1"><path d="M0 0.5H60" stroke="#000" stroke-width="1" stroke-dasharray="8 3 2 3" fill="none"/></symbol>
+<symbol id="annotation-dash-dot-wide" viewBox="0 0 60 1"><path d="M0 0.5H60" stroke="#000" stroke-width="1" stroke-dasharray="8 3 2 3" fill="none"/></symbol>
+<symbol id="annotation-wave" viewBox="0 0 64 12"><path d="M0 6 L2.2857142857142856 10.03050865276332 L4.571428571428571 11.7 L6.857142857142857 10.03050865276332 L9.142857142857142 6.000000000000001 L11.428571428571429 1.969491347236679 L13.714285714285714 0.2999999999999998 L16 1.9694913472366782 L18.285714285714285 5.999999999999998 L20.571428571428573 10.03050865276332 L22.857142857142858 11.7 L25.142857142857142 10.030508652763325 L27.428571428571427 6.000000000000002 L29.714285714285715 1.9694913472366764 L32 0.2999999999999998 L34.285714285714285 1.9694913472366737 L36.57142857142857 5.999999999999997 L38.857142857142854 10.030508652763316 L41.142857142857146 11.7 L43.42857142857143 10.030508652763327 L45.714285714285715 6.0000000000000036 L48 1.9694913472366782 L50.285714285714285 0.2999999999999998 L52.57142857142857 1.969491347236672 L54.857142857142854 5.999999999999996 L57.142857142857146 10.030508652763322 L59.42857142857143 11.7 L61.714285714285715 10.030508652763327 L64 6.000000000000005" fill="none" stroke="#000" stroke-width="0.8"/></symbol>
+<symbol id="annotation-wave-2" viewBox="0 0 85 12"><path d="M0 6 L3.0357142857142856 10.03050865276332 L6.071428571428571 11.7 L9.107142857142858 10.03050865276332 L12.142857142857142 6.000000000000001 L15.178571428571429 1.969491347236679 L18.214285714285715 0.2999999999999998 L21.25 1.9694913472366782 L24.285714285714285 5.999999999999998 L27.321428571428573 10.03050865276332 L30.357142857142858 11.7 L33.392857142857146 10.030508652763325 L36.42857142857143 6.000000000000002 L39.464285714285715 1.9694913472366764 L42.5 0.2999999999999998 L45.535714285714285 1.9694913472366737 L48.57142857142857 5.999999999999997 L51.607142857142854 10.030508652763316 L54.642857142857146 11.7 L57.67857142857143 10.030508652763327 L60.714285714285715 6.0000000000000036 L63.75 1.9694913472366782 L66.78571428571429 0.2999999999999998 L69.82142857142857 1.969491347236672 L72.85714285714286 5.999999999999996 L75.89285714285714 10.030508652763322 L78.92857142857143 11.7 L81.96428571428571 10.030508652763327 L85 6.000000000000005" fill="none" stroke="#000" stroke-width="0.8"/></symbol>
 </svg>

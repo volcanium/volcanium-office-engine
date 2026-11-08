@@ -1,0 +1,8 @@
+{
+  "name": "volcanium-office-icons",
+  "private": true,
+  "type": "module",
+  "description": "Outil de développement (non livré) : remplace les icônes d'ONLYOFFICE par celles de Tabler (MIT).",
+  "scripts": { "gen": "node gen-icons.mjs" },
+  "dependencies": { "@tabler/icons": "^3.50.0", "sharp": "^0.34.0", "svg-outline-stroke": "^1.3.1" }
+}

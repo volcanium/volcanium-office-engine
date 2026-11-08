@@ -16,6 +16,12 @@
 @import "../../../../common/main/resources/less/colors-table-gray.less";
 @import "../../../../common/main/resources/less/colors-table-white.less";
 @import "../../../../common/main/resources/less/colors-table-night.less";
+// Volcanium (texte, bleu) : accent de l'éditeur, police et rayons de la suite (voir colors-table-volcanium.less). Modifié le 2026-11-06.
+@import "../../../../common/main/resources/less/color-tokens.less";
+@vo-50: #fff1ed; @vo-100: #ffe0d8; @vo-200: #ffc2b3; @vo-300: #ff9d85; @vo-400: #ff714d; @vo-500: #e9552f; @vo-600: #d4400f; @vo-700: #a8320c; @vo-800: #7c2509; @vo-900: #511806; @ed-400: @blue-400; @ed-600: @blue-600;
+@import "../../../../common/main/resources/less/colors-table-volcanium.less";
+@font-family-sans-serif: "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+@border-radius-base: 5px; @border-radius-large: 7px; @border-radius-small: 3px;
 
 //
 // Bootstrap
@@ -288,3 +294,8 @@
         }
     }
 }
+
+// Volcanium : logo de l'éditeur (remplace celui d'origine). Modifié le 2026-11-06.
+body .extra #header-logo i { width: 156px; background-image: ~"url('@{common-image-const-path}/header/vo-logo-doc.svg')"; }
+body .extra #header-logo.logo-light i { background-image: ~"url('@{common-image-const-path}/header/vo-logo-doc-dark.svg')"; }
+@import "../../../../common/main/resources/less/volcanium-ui.less"; // Volcanium (2026-11-06)

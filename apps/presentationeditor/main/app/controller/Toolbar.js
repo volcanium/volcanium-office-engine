@@ -2775,7 +2775,7 @@ define([
                 $panel = drawtab.createToolbarPanel();
                 if ($panel) {
                     tab = {action: 'draw', caption: me.toolbar.textTabDraw, extcls: 'canedit', layoutname: 'toolbar-draw', dataHintTitle: 'C'};
-                    me.toolbar.addTab(tab, $panel, 2);
+                    me.toolbar.addTab(tab, $panel, 10)  // Volcanium: ordre des onglets;
                     me.toolbar.setVisible('draw', Common.UI.LayoutManager.isElementVisible('toolbar-draw'));
                     me.btnsDrawTab = drawtab.getView().getButtons();
                     Array.prototype.push.apply(me.toolbar.lockControls, me.btnsDrawTab);
@@ -2841,7 +2841,7 @@ define([
             $panel = viewtab.createToolbarPanel();
             if ($panel) {
                 var visible = Common.UI.LayoutManager.isElementVisible('toolbar-view');
-                me.toolbar.addTab(tab, $panel, 9);
+                me.toolbar.addTab(tab, $panel, 7)  // Volcanium: ordre des onglets;
                 me.toolbar.setVisible('view', visible);
                 !editmode && !compactview && visible && Common.Utils.InternalSettings.set('toolbar-active-tab', 'view'); // need to activate later
             }

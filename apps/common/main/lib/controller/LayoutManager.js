@@ -80,7 +80,10 @@ Common.UI.LayoutManager = new(function() {
         }
     };
 
+    // Volcanium (2026-11-06) : onglets retirés de l'interface (la collaboration et les modules seront gérés autrement).
+    var _vo_hidden = {'toolbar-collaboration': true, 'toolbar-plugins': true};
     var _isElementVisible = function(value, config, prefix) {
+        if (_vo_hidden[value]) return false;
         !config && (config = _config);
         if (!_licensed || !config) return true;
 

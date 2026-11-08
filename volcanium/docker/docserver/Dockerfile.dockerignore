@@ -1,0 +1,4 @@
+# Contexte = upstream/web-apps/deploy (plusieurs centaines de Mo) : on n'envoie que les 4 dossiers copies par le Dockerfile.
+sdkjs
+web-apps/vendor
+web-apps/apps/api

@@ -1,5 +1,8 @@
-<svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1 2a2 2 0 0 1 2-2h14l6 6v22a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2z" fill="#287CA9"/>
-    <path d="m17 0 6 6h-5a1 1 0 0 1-1-1z" fill="#000" fill-opacity=".25"/>
-    <path d="M5.5 12a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1zM5 16.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5" fill="#fff"/>
-</svg>
+<svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.44 1.7999999999999998h15.600000000000001l5.5200000000000005 5.5200000000000005V28.2H1.44z" fill="#fff" stroke="#4f7bd9" stroke-width="1" stroke-linejoin="round"/><path d="M17.04 1.7999999999999998v5.5200000000000005h5.5200000000000005" stroke="#4f7bd9" stroke-width="1" stroke-linejoin="round"/><g transform="translate(6.623999999999999 11.4) scale(0.4480000000000001)" fill="none" stroke="#4f7bd9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  
+  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" />
+  <path d="M9 9l1 0" />
+  <path d="M9 13l6 0" />
+  <path d="M9 17l6 0" />
+</g></svg>

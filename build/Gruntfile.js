@@ -70,6 +70,10 @@ module.exports = function(grunt) {
 
     global.jsreplacements = [
                 {
+                    // Volcanium (2026-11-06) : adresse publique du code source (AGPL v3, section 13)
+                    from: /\{\{SOURCE_URL\}\}/g,
+                    to: _encode(process.env.SOURCE_URL) || ''
+                },{
                     from: /\{\{SUPPORT_EMAIL\}\}/g,
                     to: _encode(process.env.SUPPORT_EMAIL) || 'support@onlyoffice.com'
                 },{
@@ -930,7 +934,6 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['deploy-common-component',
                                    'deploy-documenteditor-component',
                                    'deploy-spreadsheeteditor-component',
-                                   'deploy-presentationeditor-component',
-                                   'deploy-pdfeditor-component',
-                                   'deploy-visioeditor-component']);
+                                   // Volcanium (2026-11-06) : pas d'éditeur PDF ni Visio (hors périmètre) ; les tâches restent disponibles à la main.
+                                   'deploy-presentationeditor-component']);
 };
